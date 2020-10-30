@@ -1,5 +1,5 @@
 import { RootState } from '..';
 
-export const filterSelector = (state: RootState) => {
-  return state.filter;
+export const currentWeatherSelector = (state: RootState) => {
+  return state.currentWeather;
 };

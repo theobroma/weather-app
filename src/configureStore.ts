@@ -26,8 +26,8 @@ const logger = createLogger({
 const persistConfig = {
   key: 'root',
   storage,
-  blacklist: ['filter'], // will not be persisted
-  // whitelist: ['filter'], // will be persisted
+  // blacklist: ['filter'], // will not be persisted
+  whitelist: ['filter'], // will be persisted
 };
 
 // Middleware: Redux Persist Persisted Reducer
