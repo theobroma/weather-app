@@ -3,8 +3,7 @@ import { render } from 'react-dom';
 import './index.css';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
-import App from './App';
-// import { AppContainer } from './#';
+import { AppContainer } from './#/App';
 import { store, persistor } from './configureStore';
 import LoadingPage from './@components/UI/LoadingPage';
 import reportWebVitals from './reportWebVitals';
@@ -18,8 +17,7 @@ render(
   <React.StrictMode>
     <Provider store={store}>
       <PersistGate loading={<LoadingPage />} persistor={persistor}>
-        {/* <AppContainer /> */}
-        <App />
+        <AppContainer />
       </PersistGate>
     </Provider>
   </React.StrictMode>,
