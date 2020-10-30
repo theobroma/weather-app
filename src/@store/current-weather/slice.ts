@@ -1,6 +1,5 @@
 import { createSlice, Dispatch, PayloadAction } from '@reduxjs/toolkit';
 import { currentWeatherApi } from '../../@api/currentWeather-api';
-import { FilterType } from '../../@types';
 
 const currentWeatherInitialState = {
   lat: 51.5341714,
@@ -16,8 +15,8 @@ const currentWeatherInitialState = {
 export const userCoordinatesAC = (lat: number, lon: number) =>
   ({ type: 'COORDINATES', lat, lon } as const);
 
-export const userLocationAC = (location: any) =>
-  ({ type: 'LOCATION', location } as const);
+// export const userLocationAC = (location: any) =>
+//   ({ type: 'LOCATION', location } as const);
 
 // export const currentWeatherAC = (currentWeather: any) =>
 //   ({
@@ -38,16 +37,18 @@ export const currentWeatherSlice = createSlice({
   name: 'currentWeather',
   initialState: currentWeatherInitialState,
   reducers: {
-    setFilter: (state, { payload }: PayloadAction<any>) => payload,
     setCurrentWeather(state, action) {
       state.currentWeather = action.payload;
+    },
+    setLocation(state, action) {
+      state.location = action.payload;
     },
   },
 });
 
 export const {
-  setFilter: setFilterActionCreator,
   setCurrentWeather: setCurrentWeatherAC,
+  setLocation: setLocationAC,
 } = currentWeatherSlice.actions;
 
 // API REQUEST ACTIONS HANDLED WITH REDUX-THUNK MIDDLEWARE BUILT INTO REDUX TOOLKIT -->
@@ -76,7 +77,7 @@ export const getCurrentWeatherTC = (lat: number, lon: number) => (
   currentWeatherApi
     .currentWeather(lat, lon)
     .then((res) => {
-      dispatch(userLocationAC(res.data.location));
+      dispatch(setLocationAC(res.data.location));
       dispatch(setCurrentWeatherAC(res.data.current));
     })
     .catch((error) => {

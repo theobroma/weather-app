@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { currentWeatherSelector } from '../../@store/current-weather/selectors';
 import { getCurrentWeatherTC } from '../../@store/current-weather/slice';
+import { Location } from './Location/Location';
 
 interface Props {
   any?: any;
@@ -9,7 +10,7 @@ interface Props {
 
 export const CurrentWeather: React.FC<Props> = (props) => {
   const dispatch = useDispatch();
-  const { lon, lat } = useSelector(currentWeatherSelector);
+  const { lon, lat, location } = useSelector(currentWeatherSelector);
 
   // const location = useSelector<AppRootStateType, LocationResponseType>(
   //   (state) => state.currentWeather.location,
@@ -32,6 +33,7 @@ export const CurrentWeather: React.FC<Props> = (props) => {
   return (
     <div>
       <span>CurrentWeatherCurrentWeather</span>
+      <Location location={location} />
     </div>
   );
 };
