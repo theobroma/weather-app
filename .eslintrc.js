@@ -6,6 +6,7 @@ module.exports = {
     '@typescript-eslint/interface-name-prefix': 0,
     '@typescript-eslint/no-unused-vars': 1,
     '@typescript-eslint/no-use-before-define': 0,
+    'camelcase': 0,
     'import/prefer-default-export': 0,
     'no-console': 0,
     'no-param-reassign': 0,
