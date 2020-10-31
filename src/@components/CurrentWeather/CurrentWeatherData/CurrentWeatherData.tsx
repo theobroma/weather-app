@@ -48,29 +48,24 @@ export const CurrentWeatherData: React.FC<Props> = ({
       </div>
       <div className={styles.colRight}>
         <p className={styles.currentWeatherItem}>
-          {' '}
           <FontAwesomeIcon icon={faCalendarAlt} className={styles.icon} />{' '}
           <span>Today: </span>
           {last_updated_weekday} {last_updated_date}
         </p>
         <p className={styles.currentWeatherItem}>
-          {' '}
           <FontAwesomeIcon icon={faTemperatureHigh} className={styles.icon} />
           <span>Feels Like: </span>
           {temp_c}&#176;C
         </p>
         <p className={styles.currentWeatherItem}>
-          {' '}
           <FontAwesomeIcon icon={faWater} className={styles.icon} />
           <span>Humidity:</span> {humidity} %
         </p>
         <p className={styles.currentWeatherItem}>
-          {' '}
           <FontAwesomeIcon icon={faWind} className={styles.icon} />
           <span>Wind:</span> {wind_kph} km/h ({wind_dir})
         </p>
         <p className={styles.currentWeatherItem}>
-          {' '}
           <FontAwesomeIcon icon={faBacon} className={styles.icon} />
           <span>Gust: </span>
           {gust_kph}
