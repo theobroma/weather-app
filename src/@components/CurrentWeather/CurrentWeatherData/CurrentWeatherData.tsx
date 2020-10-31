@@ -7,7 +7,7 @@ import {
   faWater,
   faWind,
 } from '@fortawesome/free-solid-svg-icons';
-import styles from './CurrentWeatherData.module.scss';
+import { Typography } from '@material-ui/core';
 
 export const CurrentWeatherData: React.FC<Props> = ({
   currentWeather: {
@@ -31,43 +31,50 @@ export const CurrentWeatherData: React.FC<Props> = ({
   const last_updated_date = updateDate.toLocaleString('en-US', currentDate);
 
   return (
-    <div className={styles.currentWeather}>
-      <div className={styles.colLeft}>
-        <div className={styles.colLeftInner}>
-          <img
-            src={condition_img}
-            width="150"
-            className={styles.currentWeatherImg}
-            alt="condition"
-          />
-          <div className={styles.desc}>
-            <p className={styles.largeText}>{temp_c}&#176;C</p>
-            <p className={styles.bigText}>{condition_text}</p>
+    <div>
+      <div>
+        <div>
+          <img src={condition_img} width="150" alt="condition" />
+          <div>
+            <p>{temp_c}&#176;C</p>
+            <p>{condition_text}</p>
           </div>
         </div>
       </div>
-      <div className={styles.colRight}>
-        <p className={styles.currentWeatherItem}>
-          <FontAwesomeIcon icon={faCalendarAlt} className={styles.icon} />{' '}
-          <span>Today: </span>
+      <div>
+        <p>
+          <FontAwesomeIcon icon={faCalendarAlt} />
+          <Typography component="span" variant="subtitle1">
+            Today:
+          </Typography>
           {last_updated_weekday} {last_updated_date}
         </p>
-        <p className={styles.currentWeatherItem}>
-          <FontAwesomeIcon icon={faTemperatureHigh} className={styles.icon} />
-          <span>Feels Like: </span>
+        <p>
+          <FontAwesomeIcon icon={faTemperatureHigh} />
+          <Typography component="span" variant="subtitle1">
+            Feels Like:
+          </Typography>
           {temp_c}&#176;C
         </p>
-        <p className={styles.currentWeatherItem}>
-          <FontAwesomeIcon icon={faWater} className={styles.icon} />
-          <span>Humidity:</span> {humidity} %
+        <p>
+          <FontAwesomeIcon icon={faWater} />
+          <Typography component="span" variant="subtitle1">
+            Humidity:
+          </Typography>
+          {humidity} %
         </p>
-        <p className={styles.currentWeatherItem}>
-          <FontAwesomeIcon icon={faWind} className={styles.icon} />
-          <span>Wind:</span> {wind_kph} km/h ({wind_dir})
+        <p>
+          <FontAwesomeIcon icon={faWind} />
+          <Typography component="span" variant="subtitle1">
+            Wind:
+          </Typography>
+          {wind_kph} km/h ({wind_dir})
         </p>
-        <p className={styles.currentWeatherItem}>
-          <FontAwesomeIcon icon={faBacon} className={styles.icon} />
-          <span>Gust: </span>
+        <p>
+          <FontAwesomeIcon icon={faBacon} />
+          <Typography component="span" variant="subtitle1">
+            Gust:
+          </Typography>
           {gust_kph}
         </p>
       </div>

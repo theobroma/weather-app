@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Paper } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { SimpleAppBar } from '../@components/AppBar/AppBar';
 import CurrentWeather from '../@components/CurrentWeather';
@@ -19,7 +20,9 @@ export const AppContainer: React.FC = () => {
   return (
     <div className="App">
       <SimpleAppBar />
-      <CurrentWeather />
+      <Paper elevation={3}>
+        <CurrentWeather />
+      </Paper>
     </div>
   );
 };

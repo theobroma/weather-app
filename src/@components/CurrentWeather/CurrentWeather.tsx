@@ -33,24 +33,15 @@ export const CurrentWeather: React.FC<Props> = (props) => {
 
   return (
     <div>
-      <span>CurrentWeatherCurrentWeather</span>
-      <Typography component="h1" variant="h2">
-        Todos
-      </Typography>
       <Card className={classes.card}>
         <CardContent>
-          <Typography variant="h4">Город</Typography>
-          <Typography variant="h2">дата</Typography>
-          <Typography variant="h2">weatherDescription</Typography>
-          {/* <div className={classes.flex}>
-            <CurrentWeather data={result.list[0]} />
-            <WeatherDetails data={result.list[0]} />
-          </div> */}
-          <div>{/* <WeeklyWeather data={result.list} /> */}</div>
+          <Typography component="h1" variant="h2">
+            CurrentWeather
+          </Typography>
+          <Location location={location} />
+          <CurrentWeatherData currentWeather={currentWeather} />
         </CardContent>
       </Card>
-      <Location location={location} />
-      <CurrentWeatherData currentWeather={currentWeather} />
     </div>
   );
 };
