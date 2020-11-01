@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { SimpleAppBar } from '../@components/AppBar/AppBar';
 import CurrentWeather from '../@components/CurrentWeather';
 import { getUserCoordinatesTC } from '../@store/current-weather/slice';
+import Forecast from '../@components/Forecast/Forecast';
 // import {
 //   createTodoActionCreator,
 //   createTodoAsync,
@@ -23,6 +24,7 @@ export const AppContainer: React.FC = () => {
       <Paper elevation={3}>
         <CurrentWeather />
       </Paper>
+      <Forecast />
     </div>
   );
 };
