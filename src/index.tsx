@@ -3,6 +3,7 @@ import { render } from 'react-dom';
 import './index.css';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core';
 import { AppContainer } from './#/App';
 import { store, persistor } from './configureStore';
 import LoadingPage from './@components/UI/LoadingPage';
@@ -14,13 +15,19 @@ import './@assets/styles/index.scss';
 // Open Source typefaces
 import 'typeface-roboto';
 
+import THEME from './theme.json';
+
 const rootEl = document.getElementById('root');
+
+const theme = createMuiTheme(THEME);
 
 render(
   <React.StrictMode>
     <Provider store={store}>
       <PersistGate loading={<LoadingPage />} persistor={persistor}>
-        <AppContainer />
+        <ThemeProvider theme={theme}>
+          <AppContainer />
+        </ThemeProvider>
       </PersistGate>
     </Provider>
   </React.StrictMode>,
