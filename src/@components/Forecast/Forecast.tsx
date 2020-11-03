@@ -1,3 +1,12 @@
+import {
+  makeStyles,
+  Theme,
+  createStyles,
+  Divider,
+  Grid,
+  Paper,
+  Typography,
+} from '@material-ui/core';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { currentWeatherSelector } from '../../@store/current-weather/selectors';
@@ -6,7 +15,21 @@ import { getForecastTC } from '../../@store/forecast/slice';
 import { ForecastdayResponseType } from '../../@types';
 import ForecastDay from './ForecastDay/ForecastDay';
 
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      flexGrow: 1,
+    },
+    paper: {
+      padding: theme.spacing(1),
+      textAlign: 'center',
+      color: theme.palette.text.secondary,
+    },
+  }),
+);
+
 const Forecast: React.FC = () => {
+  const classes = useStyles();
   const dispatch = useDispatch();
   const { lon, lat } = useSelector(currentWeatherSelector);
   const forecastInfo = useSelector(forecastdaySelector);
@@ -23,26 +46,37 @@ const Forecast: React.FC = () => {
 
   return (
     <div>
-      <span>Forecast</span>
-      <div>
+      <Typography variant="h6" color="textSecondary">
+        Forecast for your area:
+      </Typography>
+      <Divider />
+
+      <Grid container spacing={1}>
         {forecastInfo.map((d: ForecastdayResponseType) => {
           const adaptedDate = new Date(d.date);
           return (
-            <div key={d.date}>
-              <ForecastDay
-                weekDay={adaptedDate.toLocaleString('en-US', currentWeekday)}
-                date={adaptedDate.toLocaleString('en-US', currentDate)}
-                sunrise={d.astro.sunrise}
-                sunset={d.astro.sunset}
-                icon={d.day.condition.icon}
-                condition_text={d.day.condition.text}
-                min_temp={d.day.mintemp_c}
-                max_temp={d.day.maxtemp_c}
-              />
-            </div>
+            <Grid item xs={12} md={4} spacing={3}>
+              <Paper className={classes.paper}>
+                <div key={d.date}>
+                  <ForecastDay
+                    weekDay={adaptedDate.toLocaleString(
+                      'en-US',
+                      currentWeekday,
+                    )}
+                    date={adaptedDate.toLocaleString('en-US', currentDate)}
+                    sunrise={d.astro.sunrise}
+                    sunset={d.astro.sunset}
+                    icon={d.day.condition.icon}
+                    condition_text={d.day.condition.text}
+                    min_temp={d.day.mintemp_c}
+                    max_temp={d.day.maxtemp_c}
+                  />
+                </div>
+              </Paper>
+            </Grid>
           );
         })}
-      </div>
+      </Grid>
     </div>
   );
 };
