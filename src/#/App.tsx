@@ -5,6 +5,7 @@ import { SimpleAppBar } from '../@components/AppBar/AppBar';
 import CurrentWeather from '../@components/CurrentWeather';
 import { getUserCoordinatesTC } from '../@store/current-weather/slice';
 import Forecast from '../@components/Forecast/Forecast';
+import Search from '../@components/Search/Search';
 // import {
 //   createTodoActionCreator,
 //   createTodoAsync,
@@ -21,6 +22,7 @@ export const AppContainer: React.FC = () => {
   return (
     <div className="App">
       <SimpleAppBar />
+      <Search />
       <Paper elevation={3}>
         <CurrentWeather />
       </Paper>
