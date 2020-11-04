@@ -6,6 +6,8 @@ import {
 } from '@material-ui/core';
 import React, { ChangeEvent, useCallback, useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { searchDataSelector } from '../../@store/search/selectors';
+import { searchTC } from '../../@store/search/slice';
 
 const Search = () => {
   const dispatch = useDispatch();
@@ -13,26 +15,31 @@ const Search = () => {
   //     AppRootStateType,
   //     Array<searchPlaceResponseType>
   //   >((state) => state.search.data);
+  const searchData = useSelector(searchDataSelector);
+  const [searchVal, setSearchVal] = useState('');
+  const onPlaceClick = useCallback(
+    (lat: number, lon: number) => {
+      // dispatch(getCurrentWeatherTC(lat, lon));
+      // dispatch(getForecastTC(3, lat, lon));
+      // dispatch(cleanDataAC());
+      setSearchVal('');
+    },
+    [searchVal],
+  );
 
-  //   const onPlaceClick = useCallback(
-  //     (lat: number, lon: number) => {
-  //       dispatch(getCurrentWeatherTC(lat, lon));
-  //       dispatch(getForecastTC(3, lat, lon));
-  //       dispatch(cleanDataAC());
-  //       setSearchVal('');
-  //     },
-  //     [searchVal],
-  //   );
+  useEffect(() => {
+    dispatch(searchTC(searchVal));
+  }, [searchVal]);
 
   //   useEffect(() => {
   //     debouncedSearchTerm && dispatch(searchTC(searchVal));
   //   }, [debouncedSearchTerm]);
 
-  const [searchVal, setSearchVal] = useState('');
   //   const debouncedSearchTerm = useDebounce(searchVal, 200);
-  useEffect(() => {
-    console.log(searchVal);
-  });
+
+  // useEffect(() => {
+  //   console.log(searchVal);
+  // });
 
   //   const handleChange = useCallback(
   //     (e: ChangeEvent<HTMLInputElement>) => {
@@ -48,7 +55,6 @@ const Search = () => {
   const handleChange = (e: any) => (
     event: React.ChangeEvent<HTMLInputElement>,
   ) => {
-    console.log(event);
     setSearchVal(event.currentTarget.value);
   };
 
@@ -66,6 +72,16 @@ const Search = () => {
             labelWidth={60}
           />
         </FormControl>
+        {searchData.map((d: any) => (
+          <div
+            key={d.id}
+            onClick={() => onPlaceClick(d.lat, d.lon)}
+            role="menuitem"
+            aria-hidden
+          >
+            {d.name}
+          </div>
+        ))}
       </div>
     </div>
   );
