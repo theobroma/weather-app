@@ -12,7 +12,7 @@ export const searchSlice = createSlice({
     setData(state, action) {
       state.data = action.payload;
     },
-    clearData(state, action) {
+    clearData(state) {
       state.data = [];
     },
   },

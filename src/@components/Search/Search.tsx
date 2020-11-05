@@ -6,8 +6,9 @@ import {
 } from '@material-ui/core';
 import React, { ChangeEvent, useCallback, useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import useDebounce from '../../@hooks/useDebounce';
 import { searchDataSelector } from '../../@store/search/selectors';
-import { searchTC } from '../../@store/search/slice';
+import { clearDataAC, searchTC } from '../../@store/search/slice';
 
 const Search = () => {
   const dispatch = useDispatch();
@@ -17,19 +18,25 @@ const Search = () => {
   //   >((state) => state.search.data);
   const searchData = useSelector(searchDataSelector);
   const [searchVal, setSearchVal] = useState('');
+  const debouncedSearchTerm = useDebounce(searchVal, 300);
+
   const onPlaceClick = useCallback(
     (lat: number, lon: number) => {
       // dispatch(getCurrentWeatherTC(lat, lon));
       // dispatch(getForecastTC(3, lat, lon));
-      // dispatch(cleanDataAC());
+      dispatch(clearDataAC());
       setSearchVal('');
     },
     [searchVal],
   );
 
+  // useEffect(() => {
+  //   dispatch(searchTC(searchVal));
+  // }, [searchVal]);
+
   useEffect(() => {
-    dispatch(searchTC(searchVal));
-  }, [searchVal]);
+    dispatch(searchTC(debouncedSearchTerm));
+  }, [debouncedSearchTerm, dispatch]);
 
   //   useEffect(() => {
   //     debouncedSearchTerm && dispatch(searchTC(searchVal));
