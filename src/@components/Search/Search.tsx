@@ -4,65 +4,40 @@ import {
   OutlinedInput,
   InputAdornment,
 } from '@material-ui/core';
-import React, { ChangeEvent, useCallback, useState, useEffect } from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import useDebounce from '../../@hooks/useDebounce';
+import { getCurrentWeatherTC } from '../../@store/current-weather/slice';
+import { getForecastTC } from '../../@store/forecast/slice';
 import { searchDataSelector } from '../../@store/search/selectors';
 import { clearDataAC, searchTC } from '../../@store/search/slice';
 
-const Search = () => {
+const Search: React.FC = () => {
   const dispatch = useDispatch();
-  //   const searchData = useSelector<
-  //     AppRootStateType,
-  //     Array<searchPlaceResponseType>
-  //   >((state) => state.search.data);
   const searchData = useSelector(searchDataSelector);
   const [searchVal, setSearchVal] = useState('');
   const debouncedSearchTerm = useDebounce(searchVal, 300);
+  const forecastDays = 3;
 
   const onPlaceClick = useCallback(
     (lat: number, lon: number) => {
-      // dispatch(getCurrentWeatherTC(lat, lon));
-      // dispatch(getForecastTC(3, lat, lon));
+      dispatch(getCurrentWeatherTC(lat, lon));
+      dispatch(getForecastTC(forecastDays, lat, lon));
       dispatch(clearDataAC());
       setSearchVal('');
     },
-    [searchVal],
+    [dispatch],
   );
 
-  // useEffect(() => {
-  //   dispatch(searchTC(searchVal));
-  // }, [searchVal]);
-
   useEffect(() => {
-    dispatch(searchTC(debouncedSearchTerm));
+    // API response only for 3 characters
+    if (debouncedSearchTerm.length > 2) dispatch(searchTC(debouncedSearchTerm));
   }, [debouncedSearchTerm, dispatch]);
-
-  //   useEffect(() => {
-  //     debouncedSearchTerm && dispatch(searchTC(searchVal));
-  //   }, [debouncedSearchTerm]);
-
-  //   const debouncedSearchTerm = useDebounce(searchVal, 200);
-
-  // useEffect(() => {
-  //   console.log(searchVal);
-  // });
-
-  //   const handleChange = useCallback(
-  //     (e: ChangeEvent<HTMLInputElement>) => {
-  //       setSearchVal(e.currentTarget.value);
-  //     },
-  //     [searchVal],
-  //   );
-
-  //   const [values, setValues] = React.useState<any>({
-  //     amount: '',
-  //   });
 
   const handleChange = (e: any) => (
     event: React.ChangeEvent<HTMLInputElement>,
   ) => {
-    setSearchVal(event.currentTarget.value);
+    setSearchVal(event.currentTarget.value.trim());
   };
 
   return (
@@ -70,11 +45,11 @@ const Search = () => {
       <div className="sectionWrap">
         <h2>Search</h2>
         <FormControl fullWidth variant="outlined">
-          <InputLabel htmlFor="outlined-adornment-amount">Amount</InputLabel>
+          <InputLabel htmlFor="search-input">Search</InputLabel>
           <OutlinedInput
-            id="outlined-adornment-amount"
+            id="search-input"
             value={searchVal}
-            onChange={handleChange('amount')}
+            onChange={handleChange('search')}
             startAdornment={<InputAdornment position="start">$</InputAdornment>}
             labelWidth={60}
           />
