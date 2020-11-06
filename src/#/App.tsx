@@ -22,11 +22,15 @@ export const AppContainer: React.FC = () => {
   return (
     <div className="App">
       <SimpleAppBar />
-      <Search />
+      <Paper elevation={3}>
+        <Search />
+      </Paper>
       <Paper elevation={3}>
         <CurrentWeather />
       </Paper>
-      <Forecast />
+      <Paper elevation={3}>
+        <Forecast />
+      </Paper>
     </div>
   );
 };
