@@ -39,7 +39,7 @@ const Forecast: React.FC = () => {
     if (lat !== 0 && lon !== 0) {
       dispatch(getForecastTC(forecastDays, lat, lon));
     }
-  }, [lat, lon, forecastDays]);
+  }, [lat, lon, forecastDays, dispatch]);
 
   const currentWeekday = { weekday: 'long' };
   const currentDate = { year: 'numeric', month: 'long', day: 'numeric' };

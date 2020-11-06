@@ -3,11 +3,12 @@ module.exports = {
   extends: ['airbnb-typescript-prettier'],
   rules: {
     '@typescript-eslint/explicit-function-return-type': 0,
+    '@typescript-eslint/explicit-module-boundary-types': 0,
     '@typescript-eslint/interface-name-prefix': 0,
     '@typescript-eslint/no-unused-vars': 0,
     '@typescript-eslint/no-use-before-define': 0,
-    'camelcase': 0,
     'import/prefer-default-export': 0,
+    'camelcase': 0,
     'no-console': 0,
     'no-param-reassign': 0,
     'no-plusplus': ['error', { allowForLoopAfterthoughts: true }],

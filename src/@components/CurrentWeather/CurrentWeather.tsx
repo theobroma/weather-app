@@ -29,7 +29,7 @@ export const CurrentWeather: React.FC<Props> = (props) => {
     if (lat !== 0 && lon !== 0) {
       dispatch(getCurrentWeatherTC(lat, lon));
     }
-  }, [lat, lon]);
+  }, [lat, lon, dispatch]);
 
   return (
     <div>
