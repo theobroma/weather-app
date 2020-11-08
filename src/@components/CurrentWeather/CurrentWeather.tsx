@@ -7,10 +7,6 @@ import { getCurrentWeatherTC } from '../../@store/current-weather/slice';
 import { CurrentWeatherData } from './CurrentWeatherData/CurrentWeatherData';
 import { Location } from './Location/Location';
 
-interface Props {
-  any?: any;
-}
-
 const useStyles = makeStyles({
   card: {
     minWidth: 275,
@@ -18,8 +14,8 @@ const useStyles = makeStyles({
   },
 });
 
-export const CurrentWeather: React.FC<Props> = (props) => {
-  const classes = useStyles(props);
+export const CurrentWeather: React.FC = () => {
+  const classes = useStyles();
   const dispatch = useDispatch();
   const { lon, lat, location, currentWeather } = useSelector(
     currentWeatherSelector,
