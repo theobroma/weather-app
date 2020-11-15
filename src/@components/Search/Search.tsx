@@ -34,9 +34,7 @@ const Search: React.FC = () => {
     if (debouncedSearchTerm.length > 2) dispatch(searchTC(debouncedSearchTerm));
   }, [debouncedSearchTerm, dispatch]);
 
-  const handleChange = (e: any) => (
-    event: React.ChangeEvent<HTMLInputElement>,
-  ) => {
+  const handleChange = () => (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchVal(event.currentTarget.value.trim());
   };
 
@@ -49,7 +47,7 @@ const Search: React.FC = () => {
           <OutlinedInput
             id="search-input"
             value={searchVal}
-            onChange={handleChange('search')}
+            onChange={handleChange()}
             startAdornment={<InputAdornment position="start">$</InputAdornment>}
             labelWidth={60}
           />

@@ -1,5 +1,4 @@
 import { createSlice, Dispatch, PayloadAction } from '@reduxjs/toolkit';
-import { currentWeatherApi } from '../../@api/currentWeather-api';
 import { forecastAPI } from '../../@api/forecast-api';
 
 const forecastInitialState = {
@@ -10,7 +9,7 @@ export const forecastSlice = createSlice({
   name: 'forecast',
   initialState: forecastInitialState,
   reducers: {
-    setForecast(state, action) {
+    setForecast(state, action: PayloadAction<any>) {
       state.forecastday = action.payload;
     },
   },
@@ -24,10 +23,10 @@ export const getForecastTC = (days: number, lat: number, lon: number) => (
 ) => {
   forecastAPI
     .dailyWeather(days, lat, lon)
-    .then((res: any) => {
+    .then((res) => {
       dispatch(setForecastAC(res.data.forecast.forecastday));
     })
-    .catch((error: any) => {
+    .catch((error) => {
       // dispatch(errorAC(error.response.data.error));
     });
 };
