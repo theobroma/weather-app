@@ -9,6 +9,7 @@ import {
 } from '@material-ui/core';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { nanoid } from 'nanoid';
 import { currentWeatherSelector } from '../../@store/current-weather/selectors';
 import { forecastdaySelector } from '../../@store/forecast/selectors';
 import { getForecastTC } from '../../@store/forecast/slice';
@@ -55,23 +56,18 @@ const Forecast: React.FC = () => {
         {forecastInfo.map((d: ForecastdayResponseType) => {
           const adaptedDate = new Date(d.date);
           return (
-            <Grid item xs={12} md={4} spacing={3}>
+            <Grid item xs={12} md={4} key={nanoid(8)}>
               <Paper className={classes.paper}>
-                <div key={d.date}>
-                  <ForecastDay
-                    weekDay={adaptedDate.toLocaleString(
-                      'en-US',
-                      currentWeekday,
-                    )}
-                    date={adaptedDate.toLocaleString('en-US', currentDate)}
-                    sunrise={d.astro.sunrise}
-                    sunset={d.astro.sunset}
-                    icon={d.day.condition.icon}
-                    condition_text={d.day.condition.text}
-                    min_temp={d.day.mintemp_c}
-                    max_temp={d.day.maxtemp_c}
-                  />
-                </div>
+                <ForecastDay
+                  weekDay={adaptedDate.toLocaleString('en-US', currentWeekday)}
+                  date={adaptedDate.toLocaleString('en-US', currentDate)}
+                  sunrise={d.astro.sunrise}
+                  sunset={d.astro.sunset}
+                  icon={d.day.condition.icon}
+                  condition_text={d.day.condition.text}
+                  min_temp={d.day.mintemp_c}
+                  max_temp={d.day.maxtemp_c}
+                />
               </Paper>
             </Grid>
           );
