@@ -3,7 +3,7 @@ import { render } from 'react-dom';
 import './index.css';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
-import { createMuiTheme, ThemeProvider } from '@material-ui/core';
+import { createMuiTheme, CssBaseline, ThemeProvider } from '@material-ui/core';
 import { AppContainer } from './#/App';
 import { store, persistor } from './configureStore';
 import LoadingPage from './@components/UI/LoadingPage';
@@ -26,6 +26,7 @@ render(
     <Provider store={store}>
       <PersistGate loading={<LoadingPage />} persistor={persistor}>
         <ThemeProvider theme={theme}>
+          <CssBaseline />
           <AppContainer />
         </ThemeProvider>
       </PersistGate>

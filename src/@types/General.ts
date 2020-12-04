@@ -4,12 +4,9 @@ export type ForecastDayInfoType = {
 
 export type ForecastdayResponseType = {
   date: string;
-  //   day: DayResponseType;
-  day: any;
-  //   astro: AstroResponseType;
-  astro: any;
-  //   hour: Array<HourResponseType>;
-  hour: any;
+  day: DayResponseType;
+  astro: AstroResponseType;
+  hour: Array<HourResponseType>;
 };
 
 export type LocationResponseType = {
