@@ -1,8 +1,9 @@
 import { createSlice, Dispatch, PayloadAction } from '@reduxjs/toolkit';
 import { searchAPI } from '../../@api/search-api';
+import { searchPlaceResponseType } from '../../@types';
 
 const searchInitialState = {
-  data: [],
+  data: [] as Array<searchPlaceResponseType>,
 };
 
 export const searchSlice = createSlice({

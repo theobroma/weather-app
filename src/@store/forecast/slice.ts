@@ -1,8 +1,8 @@
 import { createSlice, Dispatch, PayloadAction } from '@reduxjs/toolkit';
-import { forecastAPI } from '../../@api/forecast-api';
+import { forecastAPI, ForecastdayResponseType } from '../../@api/forecast-api';
 
 const forecastInitialState = {
-  forecastday: [],
+  forecastday: [] as Array<ForecastdayResponseType>,
 };
 
 export const forecastSlice = createSlice({

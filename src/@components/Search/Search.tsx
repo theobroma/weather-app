@@ -52,7 +52,7 @@ const Search: React.FC = () => {
             labelWidth={60}
           />
         </FormControl>
-        {searchData.map((d: any) => (
+        {searchData.map((d) => (
           <div
             key={d.id}
             onClick={() => onPlaceClick(d.lat, d.lon)}

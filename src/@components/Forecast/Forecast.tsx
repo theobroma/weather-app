@@ -13,7 +13,6 @@ import { nanoid } from 'nanoid';
 import { currentWeatherSelector } from '../../@store/current-weather/selectors';
 import { forecastdaySelector } from '../../@store/forecast/selectors';
 import { getForecastTC } from '../../@store/forecast/slice';
-import { ForecastdayResponseType } from '../../@types';
 import ForecastDay from './ForecastDay/ForecastDay';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -53,7 +52,7 @@ const Forecast: React.FC = () => {
       <Divider />
 
       <Grid container spacing={1}>
-        {forecastInfo.map((d: ForecastdayResponseType) => {
+        {forecastInfo.map((d) => {
           const adaptedDate = new Date(d.date);
           return (
             <Grid item xs={12} md={4} key={nanoid(8)}>
