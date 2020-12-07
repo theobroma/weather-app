@@ -8,12 +8,12 @@ import {
   faWind,
 } from '@fortawesome/free-solid-svg-icons';
 import { Typography } from '@material-ui/core';
+import { CurrentWeatherResponseType } from '../../../@types';
 
 export const CurrentWeatherData: React.FC<Props> = ({
   currentWeather: {
-    condition_img,
     temp_c,
-    condition_text,
+    condition,
     last_updated,
     humidity,
     wind_kph,
@@ -34,10 +34,10 @@ export const CurrentWeatherData: React.FC<Props> = ({
     <div>
       <div>
         <div>
-          <img src={condition_img} width="150" alt="condition" />
+          <img src={condition?.icon} width="150" alt="condition" />
           <div>
             <p>{temp_c}&#176;C</p>
-            <p>{condition_text}</p>
+            <p>{condition?.text}</p>
           </div>
         </div>
       </div>
@@ -83,15 +83,5 @@ export const CurrentWeatherData: React.FC<Props> = ({
 };
 
 type Props = {
-  currentWeather: {
-    last_updated: string;
-    temp_c: number;
-    //   feelslike_c: number;
-    wind_kph: number;
-    wind_dir: string;
-    gust_kph: number;
-    humidity: number;
-    condition_text: string;
-    condition_img: string;
-  };
+  currentWeather: CurrentWeatherResponseType;
 };

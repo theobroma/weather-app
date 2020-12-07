@@ -5,23 +5,19 @@ import {
   PayloadAction,
 } from '@reduxjs/toolkit';
 import { currentWeatherApi } from '../../@api/currentWeather-api';
+import { CurrentWeatherResponseType, LocationResponseType } from '../../@types';
 
 const currentWeatherInitialState = {
-  // lat: 51.5341714,
-  // lon: 33.3767724,
-  lat: 0,
-  lon: 0,
-  location: {} as any,
-  currentWeather: {} as any,
-  //   currentWeather: {
-  //     condition: {} as ConditionResponseType,
-  //   } as CurrentWeatherResponseType,
+  lat: 0, // lat: 51.5341714,
+  lon: 0, // lon: 33.3767724,
+  location: {} as LocationResponseType,
+  currentWeather: {} as CurrentWeatherResponseType,
 };
 
 export const getUserCoordinatesTC = createAsyncThunk(
   'currentWeather/getUserCoordinatesTC',
   (undf, thunkAPI) => {
-    navigator.geolocation.getCurrentPosition(function (position) {
+    navigator.geolocation.getCurrentPosition((position) => {
       thunkAPI.dispatch(
         userCoordinatesAC({
           lat: position.coords.latitude,
@@ -43,10 +39,13 @@ export const slice = createSlice({
       state.lat = action.payload.lat;
       state.lon = action.payload.lon;
     },
-    setCurrentWeatherAC(state, action: PayloadAction<any>) {
+    setCurrentWeatherAC(
+      state,
+      action: PayloadAction<CurrentWeatherResponseType>,
+    ) {
       state.currentWeather = action.payload;
     },
-    setLocationAC(state, action: PayloadAction<any>) {
+    setLocationAC(state, action: PayloadAction<LocationResponseType>) {
       state.location = action.payload;
     },
   },
