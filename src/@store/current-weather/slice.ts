@@ -1,9 +1,16 @@
-import { createSlice, Dispatch, PayloadAction } from '@reduxjs/toolkit';
+import {
+  createAsyncThunk,
+  createSlice,
+  Dispatch,
+  PayloadAction,
+} from '@reduxjs/toolkit';
 import { currentWeatherApi } from '../../@api/currentWeather-api';
 
 const currentWeatherInitialState = {
-  lat: 51.5341714,
-  lon: 33.3767724,
+  // lat: 51.5341714,
+  // lon: 33.3767724,
+  lat: 0,
+  lon: 0,
   location: {} as any,
   currentWeather: {} as any,
   //   currentWeather: {
@@ -11,36 +18,47 @@ const currentWeatherInitialState = {
   //   } as CurrentWeatherResponseType,
 };
 
-// Action creators
-export const userCoordinatesAC = (lat: number, lon: number) =>
-  ({ type: 'COORDINATES', lat, lon } as const);
+export const getUserCoordinatesTC = createAsyncThunk(
+  'currentWeather/getUserCoordinatesTC',
+  (undf, thunkAPI) => {
+    navigator.geolocation.getCurrentPosition(function (position) {
+      thunkAPI.dispatch(
+        userCoordinatesAC({
+          lat: position.coords.latitude,
+          lon: position.coords.longitude,
+        }),
+      );
+    });
+  },
+);
 
-// THUNK
-export const getUserCoordinatesTC = () => (dispatch: Dispatch<any>) => {
-  navigator.geolocation.getCurrentPosition(function (position) {
-    dispatch(
-      userCoordinatesAC(position.coords.latitude, position.coords.longitude),
-    );
-  });
-};
-
-export const currentWeatherSlice = createSlice({
+export const slice = createSlice({
   name: 'currentWeather',
   initialState: currentWeatherInitialState,
   reducers: {
-    setCurrentWeather(state, action: PayloadAction<any>) {
+    userCoordinatesAC(
+      state,
+      action: PayloadAction<{ lat: number; lon: number }>,
+    ) {
+      state.lat = action.payload.lat;
+      state.lon = action.payload.lon;
+    },
+    setCurrentWeatherAC(state, action: PayloadAction<any>) {
       state.currentWeather = action.payload;
     },
-    setLocation(state, action: PayloadAction<any>) {
+    setLocationAC(state, action: PayloadAction<any>) {
       state.location = action.payload;
     },
   },
 });
 
+export const currentWeatherReducer = slice.reducer;
+
 export const {
-  setCurrentWeather: setCurrentWeatherAC,
-  setLocation: setLocationAC,
-} = currentWeatherSlice.actions;
+  userCoordinatesAC,
+  setCurrentWeatherAC,
+  setLocationAC,
+} = slice.actions;
 
 /* **************THUNKS************** */
 
