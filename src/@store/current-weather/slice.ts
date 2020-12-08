@@ -1,9 +1,4 @@
-import {
-  createAsyncThunk,
-  createSlice,
-  Dispatch,
-  PayloadAction,
-} from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { currentWeatherApi } from '../../@api/currentWeather-api';
 import { CurrentWeatherResponseType, LocationResponseType } from '../../@types';
 
@@ -28,6 +23,20 @@ export const getUserCoordinatesTC = createAsyncThunk(
   },
 );
 
+export const getCurrentWeatherTC = createAsyncThunk(
+  'currentWeather/getCurrentWeather',
+  async (param: { lat: number; lon: number }, thunkAPI) => {
+    try {
+      const res = await currentWeatherApi.currentWeather(param.lat, param.lon);
+      thunkAPI.dispatch(setLocationAC(res.data.location));
+      return { currentWeather: res.data.current };
+    } catch (error) {
+      // thunkAPI.dispatch(errorAC({ error: error.response.data.error }));
+      return false;
+    }
+  },
+);
+
 export const slice = createSlice({
   name: 'currentWeather',
   initialState: currentWeatherInitialState,
@@ -39,38 +48,19 @@ export const slice = createSlice({
       state.lat = action.payload.lat;
       state.lon = action.payload.lon;
     },
-    setCurrentWeatherAC(
-      state,
-      action: PayloadAction<CurrentWeatherResponseType>,
-    ) {
-      state.currentWeather = action.payload;
-    },
     setLocationAC(state, action: PayloadAction<LocationResponseType>) {
       state.location = action.payload;
     },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(getCurrentWeatherTC.fulfilled, (state, action) => {
+      if (action.payload) {
+        state.currentWeather = action.payload.currentWeather;
+      }
+    });
   },
 });
 
 export const currentWeatherReducer = slice.reducer;
 
-export const {
-  userCoordinatesAC,
-  setCurrentWeatherAC,
-  setLocationAC,
-} = slice.actions;
-
-/* **************THUNKS************** */
-
-export const getCurrentWeatherTC = (lat: number, lon: number) => (
-  dispatch: Dispatch<any>,
-) => {
-  currentWeatherApi
-    .currentWeather(lat, lon)
-    .then((res) => {
-      dispatch(setLocationAC(res.data.location));
-      dispatch(setCurrentWeatherAC(res.data.current));
-    })
-    .catch((error) => {
-      // dispatch(errorAC(error.response.data.error));
-    });
-};
+export const { userCoordinatesAC, setLocationAC } = slice.actions;

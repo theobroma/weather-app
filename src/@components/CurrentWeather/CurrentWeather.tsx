@@ -23,7 +23,7 @@ export const CurrentWeather: React.FC = () => {
 
   useEffect(() => {
     if (lat !== 0 && lon !== 0) {
-      dispatch(getCurrentWeatherTC(lat, lon));
+      dispatch(getCurrentWeatherTC({ lat, lon }));
     }
   }, [lat, lon, dispatch]);
 
