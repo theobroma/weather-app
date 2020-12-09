@@ -33,13 +33,13 @@ const Forecast: React.FC = () => {
   const dispatch = useDispatch();
   const { lon, lat } = useSelector(currentWeatherSelector);
   const forecastInfo = useSelector(forecastdaySelector);
-  const forecastDays = 3;
+  const days = 3;
 
   useEffect(() => {
     if (lat !== 0 && lon !== 0) {
-      dispatch(getForecastTC(forecastDays, lat, lon));
+      dispatch(getForecastTC({ days, lat, lon }));
     }
-  }, [lat, lon, forecastDays, dispatch]);
+  }, [lat, lon, days, dispatch]);
 
   const currentWeekday = { weekday: 'long' };
   const currentDate = { year: 'numeric', month: 'long', day: 'numeric' };

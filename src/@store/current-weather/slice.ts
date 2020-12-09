@@ -30,9 +30,10 @@ export const getCurrentWeatherTC = createAsyncThunk(
       const res = await currentWeatherApi.currentWeather(param.lat, param.lon);
       thunkAPI.dispatch(setLocationAC(res.data.location));
       return { currentWeather: res.data.current };
-    } catch (error) {
-      // thunkAPI.dispatch(errorAC({ error: error.response.data.error }));
-      return false;
+    } catch (err) {
+      // Use `err.response.data` as `action.payload` for a `rejected` action,
+      // by explicitly returning it using the `rejectWithValue()` utility
+      return thunkAPI.rejectWithValue(err.response.data);
     }
   },
 );

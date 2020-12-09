@@ -17,12 +17,12 @@ const Search: React.FC = () => {
   const searchData = useSelector(searchDataSelector);
   const [searchVal, setSearchVal] = useState('');
   const debouncedSearchTerm = useDebounce(searchVal, 300);
-  const forecastDays = 3;
+  const days = 3;
 
   const onPlaceClick = useCallback(
     (lat: number, lon: number) => {
       dispatch(getCurrentWeatherTC({ lat, lon }));
-      dispatch(getForecastTC(forecastDays, lat, lon));
+      dispatch(getForecastTC({ days, lat, lon }));
       dispatch(clearDataAC());
       setSearchVal('');
     },
