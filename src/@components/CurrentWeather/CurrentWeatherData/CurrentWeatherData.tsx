@@ -7,7 +7,7 @@ import {
   faWater,
   faWind,
 } from '@fortawesome/free-solid-svg-icons';
-import { Typography } from '@material-ui/core';
+import { Grid, Typography } from '@material-ui/core';
 import { CurrentWeatherResponseType } from '../../../@types';
 
 export const CurrentWeatherData: React.FC<Props> = ({
@@ -32,52 +32,57 @@ export const CurrentWeatherData: React.FC<Props> = ({
 
   return (
     <div>
-      <div>
-        <div>
-          <img src={condition?.icon} width="150" alt="condition" />
+      <Grid container spacing={1}>
+        <Grid item xs={12} md={6}>
           <div>
-            <p>{temp_c}&#176;C</p>
-            <p>{condition?.text}</p>
+            <img src={condition?.icon} width="150" alt="condition" />
+            <div>
+              <p>{temp_c}&#176;C</p>
+              <p>{condition?.text}</p>
+            </div>
           </div>
-        </div>
-      </div>
-      <div>
-        <p>
-          <FontAwesomeIcon icon={faCalendarAlt} />
-          <Typography component="span" variant="subtitle1">
-            Today:
-          </Typography>
-          {last_updated_weekday} {last_updated_date}
-        </p>
-        <p>
-          <FontAwesomeIcon icon={faTemperatureHigh} />
-          <Typography component="span" variant="subtitle1">
-            Feels Like:
-          </Typography>
-          {temp_c}&#176;C
-        </p>
-        <p>
-          <FontAwesomeIcon icon={faWater} />
-          <Typography component="span" variant="subtitle1">
-            Humidity:
-          </Typography>
-          {humidity} %
-        </p>
-        <p>
-          <FontAwesomeIcon icon={faWind} />
-          <Typography component="span" variant="subtitle1">
-            Wind:
-          </Typography>
-          {wind_kph} km/h ({wind_dir})
-        </p>
-        <p>
-          <FontAwesomeIcon icon={faBacon} />
-          <Typography component="span" variant="subtitle1">
-            Gust:
-          </Typography>
-          {gust_kph}
-        </p>
-      </div>
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <div>
+            <p>
+              <FontAwesomeIcon icon={faCalendarAlt} />
+              <Typography component="span" variant="subtitle1">
+                Today:
+              </Typography>
+              {last_updated_weekday} {last_updated_date}
+            </p>
+            <p>
+              <FontAwesomeIcon icon={faTemperatureHigh} />
+              <Typography component="span" variant="subtitle1">
+                Feels Like:
+              </Typography>
+              {temp_c}&#176;C
+            </p>
+            <p>
+              <FontAwesomeIcon icon={faWater} />
+              <Typography component="span" variant="subtitle1">
+                Humidity:
+              </Typography>
+              {humidity} %
+            </p>
+            <p>
+              <FontAwesomeIcon icon={faWind} />
+              <Typography component="span" variant="subtitle1">
+                Wind:
+              </Typography>
+              {wind_kph} km/h ({wind_dir})
+            </p>
+            <p>
+              <FontAwesomeIcon icon={faBacon} />
+              <Typography component="span" variant="subtitle1">
+                Gust:
+              </Typography>
+              {gust_kph}
+            </p>
+          </div>
+        </Grid>
+      </Grid>
+      <div />
     </div>
   );
 };

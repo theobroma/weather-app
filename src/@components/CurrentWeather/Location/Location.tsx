@@ -1,3 +1,4 @@
+import { Typography } from '@material-ui/core';
 import React from 'react';
 
 type Props = {
@@ -11,9 +12,9 @@ type Props = {
 export const Location: React.FC<Props> = ({ location }) => {
   return (
     <div>
-      <h2>
+      <Typography component="h2" variant="h6">
         {location.name}, {location.region}, {location.country}
-      </h2>
+      </Typography>
     </div>
   );
 };

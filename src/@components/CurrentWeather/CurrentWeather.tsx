@@ -31,7 +31,7 @@ export const CurrentWeather: React.FC = () => {
     <div>
       <Card className={classes.card}>
         <CardContent>
-          <Typography component="h1" variant="h2">
+          <Typography component="h1" variant="h5">
             CurrentWeather
           </Typography>
           <Location location={location} />
