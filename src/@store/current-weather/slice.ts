@@ -63,5 +63,4 @@ export const slice = createSlice({
 });
 
 export const currentWeatherReducer = slice.reducer;
-
 export const { userCoordinatesAC, setLocationAC } = slice.actions;
