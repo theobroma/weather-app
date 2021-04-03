@@ -22,8 +22,12 @@ export const CurrentWeatherData: React.FC<Props> = ({
   },
 }) => {
   const updateDate = new Date(last_updated);
-  const currentWeekday = { weekday: 'long' };
-  const currentDate = { year: 'numeric', month: 'long', day: 'numeric' };
+  const currentWeekday = { weekday: 'long' } as const;
+  const currentDate = {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  } as const;
   const last_updated_weekday = updateDate.toLocaleString(
     'en-US',
     currentWeekday,

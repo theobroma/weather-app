@@ -41,8 +41,12 @@ const Forecast: React.FC = () => {
     }
   }, [lat, lon, days, dispatch]);
 
-  const currentWeekday = { weekday: 'long' };
-  const currentDate = { year: 'numeric', month: 'long', day: 'numeric' };
+  const currentWeekday = { weekday: 'long' } as const;
+  const currentDate = {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  } as const;
 
   return (
     <div>
