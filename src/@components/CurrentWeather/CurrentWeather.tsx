@@ -23,7 +23,7 @@ export const CurrentWeather: React.FC = () => {
     <Box p={3}>
       <Box mb={1}>
         <Typography variant="h6" noWrap>
-          CurrentWeather
+          Current Weather
         </Typography>
       </Box>
       <Location location={location} />

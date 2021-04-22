@@ -1,35 +1,13 @@
-import {
-  makeStyles,
-  Theme,
-  createStyles,
-  Divider,
-  Grid,
-  Paper,
-  Typography,
-} from '@material-ui/core';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { nanoid } from 'nanoid';
+import { Grid, Typography, Box } from '@material-ui/core';
 import { currentWeatherSelector } from '../../@store/current-weather/selectors';
 import { forecastdaySelector } from '../../@store/forecast/selectors';
 import { getForecastTC } from '../../@store/forecast/slice';
 import ForecastDay from './ForecastDay/ForecastDay';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      flexGrow: 1,
-    },
-    paper: {
-      padding: theme.spacing(1),
-      textAlign: 'center',
-      color: theme.palette.text.secondary,
-    },
-  }),
-);
-
 const Forecast: React.FC = () => {
-  const classes = useStyles();
   const dispatch = useDispatch();
   const { lon, lat } = useSelector(currentWeatherSelector);
   const forecastInfo = useSelector(forecastdaySelector);
@@ -49,18 +27,18 @@ const Forecast: React.FC = () => {
   } as const;
 
   return (
-    <div>
-      <Typography variant="h6" color="textSecondary">
-        Forecast for your area:
-      </Typography>
-      <Divider />
-
-      <Grid container spacing={1}>
-        {forecastInfo.map((d) => {
-          const adaptedDate = new Date(d.date);
-          return (
-            <Grid item xs={12} md={4} key={nanoid(8)}>
-              <Paper className={classes.paper}>
+    <Box p={3}>
+      <Box mb={1}>
+        <Typography variant="h6" noWrap>
+          Forecast
+        </Typography>
+      </Box>
+      <Box>
+        <Grid container spacing={1}>
+          {forecastInfo.map((d) => {
+            const adaptedDate = new Date(d.date);
+            return (
+              <Grid item xs={12} md={4} key={nanoid(8)}>
                 <ForecastDay
                   weekDay={adaptedDate.toLocaleString('en-US', currentWeekday)}
                   date={adaptedDate.toLocaleString('en-US', currentDate)}
@@ -71,12 +49,12 @@ const Forecast: React.FC = () => {
                   min_temp={d.day.mintemp_c}
                   max_temp={d.day.maxtemp_c}
                 />
-              </Paper>
-            </Grid>
-          );
-        })}
-      </Grid>
-    </div>
+              </Grid>
+            );
+          })}
+        </Grid>
+      </Box>
+    </Box>
   );
 };
 
