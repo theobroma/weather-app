@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Paper } from '@material-ui/core';
+import { Box, Paper } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 import { SimpleAppBar } from '../@components/AppBar/AppBar';
 import CurrentWeather from '../@components/CurrentWeather';
@@ -16,7 +16,9 @@ export const AppContainer: React.FC = () => {
 
   return (
     <div className="App">
-      <SimpleAppBar />
+      <Box mb={2}>
+        <SimpleAppBar />
+      </Box>
       <Paper elevation={3}>
         <Search />
       </Paper>
