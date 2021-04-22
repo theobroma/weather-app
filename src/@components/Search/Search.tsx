@@ -43,9 +43,11 @@ const Search: React.FC = () => {
   return (
     <Box p={3}>
       {/* <h2>Search</h2> */}
-      <Typography variant="h6" noWrap>
-        Search
-      </Typography>
+      <Box mb={1}>
+        <Typography variant="h6" noWrap>
+          Search
+        </Typography>
+      </Box>
       <FormControl fullWidth variant="outlined">
         <InputLabel htmlFor="search-input">Search</InputLabel>
         <OutlinedInput

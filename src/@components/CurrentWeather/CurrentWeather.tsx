@@ -1,4 +1,4 @@
-import { Card, CardContent, makeStyles } from '@material-ui/core';
+import { Box } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography/Typography';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -7,15 +7,7 @@ import { getCurrentWeatherTC } from '../../@store/current-weather/slice';
 import { CurrentWeatherData } from './CurrentWeatherData/CurrentWeatherData';
 import { Location } from './Location/Location';
 
-const useStyles = makeStyles({
-  card: {
-    minWidth: 275,
-    marginBottom: 16,
-  },
-});
-
 export const CurrentWeather: React.FC = () => {
-  const classes = useStyles();
   const dispatch = useDispatch();
   const { lon, lat, location, currentWeather } = useSelector(
     currentWeatherSelector,
@@ -28,16 +20,14 @@ export const CurrentWeather: React.FC = () => {
   }, [lat, lon, dispatch]);
 
   return (
-    <div>
-      <Card className={classes.card}>
-        <CardContent>
-          <Typography component="h1" variant="h5">
-            CurrentWeather
-          </Typography>
-          <Location location={location} />
-          <CurrentWeatherData currentWeather={currentWeather} />
-        </CardContent>
-      </Card>
-    </div>
+    <Box p={3}>
+      <Box mb={1}>
+        <Typography variant="h6" noWrap>
+          CurrentWeather
+        </Typography>
+      </Box>
+      <Location location={location} />
+      <CurrentWeatherData currentWeather={currentWeather} />
+    </Box>
   );
 };
