@@ -3,6 +3,8 @@ import {
   InputLabel,
   OutlinedInput,
   InputAdornment,
+  Typography,
+  Box,
 } from '@material-ui/core';
 import React, { useCallback, useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -39,31 +41,32 @@ const Search: React.FC = () => {
   };
 
   return (
-    <div className="container">
-      <div className="sectionWrap">
-        <h2>Search</h2>
-        <FormControl fullWidth variant="outlined">
-          <InputLabel htmlFor="search-input">Search</InputLabel>
-          <OutlinedInput
-            id="search-input"
-            value={searchVal}
-            onChange={handleChange()}
-            startAdornment={<InputAdornment position="start">$</InputAdornment>}
-            labelWidth={60}
-          />
-        </FormControl>
-        {searchData.map((d) => (
-          <div
-            key={d.id}
-            onClick={() => onPlaceClick(d.lat, d.lon)}
-            role="menuitem"
-            aria-hidden
-          >
-            {d.name}
-          </div>
-        ))}
-      </div>
-    </div>
+    <Box p={3}>
+      {/* <h2>Search</h2> */}
+      <Typography variant="h6" noWrap>
+        Search
+      </Typography>
+      <FormControl fullWidth variant="outlined">
+        <InputLabel htmlFor="search-input">Search</InputLabel>
+        <OutlinedInput
+          id="search-input"
+          value={searchVal}
+          onChange={handleChange()}
+          startAdornment={<InputAdornment position="start">$</InputAdornment>}
+          labelWidth={60}
+        />
+      </FormControl>
+      {searchData.map((d) => (
+        <div
+          key={d.id}
+          onClick={() => onPlaceClick(d.lat, d.lon)}
+          role="menuitem"
+          aria-hidden
+        >
+          {d.name}
+        </div>
+      ))}
+    </Box>
   );
 };
 

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Box, Paper } from '@material-ui/core';
+import { Box, Container, Paper } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 import { SimpleAppBar } from '../@components/AppBar/AppBar';
 import CurrentWeather from '../@components/CurrentWeather';
@@ -19,15 +19,24 @@ export const AppContainer: React.FC = () => {
       <Box mb={2}>
         <SimpleAppBar />
       </Box>
-      <Paper elevation={3}>
-        <Search />
-      </Paper>
-      <Paper elevation={3}>
-        <CurrentWeather />
-      </Paper>
-      <Paper elevation={3}>
-        <Forecast />
-      </Paper>
+      <Container maxWidth="lg">
+        {/* {picturesLoading && <LoadingPage />} */}
+        <Box mb={2}>
+          <Paper elevation={3}>
+            <Search />
+          </Paper>
+        </Box>
+        <Box mb={2}>
+          <Paper elevation={3}>
+            <CurrentWeather />
+          </Paper>
+        </Box>
+        <Box mb={2}>
+          <Paper elevation={3}>
+            <Forecast />
+          </Paper>
+        </Box>
+      </Container>
     </div>
   );
 };

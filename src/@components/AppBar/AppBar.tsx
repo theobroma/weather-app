@@ -28,7 +28,7 @@ export const SimpleAppBar: React.FC = () => {
     <div className={classes.grow}>
       <AppBar position="static">
         <Container maxWidth="lg">
-          <Toolbar>
+          <Toolbar style={{ padding: 0 }}>
             <Typography className={classes.title} variant="h6" noWrap>
               Weather App
             </Typography>
