@@ -6,6 +6,7 @@ import CurrentWeather from '../@components/CurrentWeather';
 import { getUserCoordinatesTC } from '../@store/current-weather/slice';
 import Forecast from '../@components/Forecast/Forecast';
 import Search from '../@components/Search/Search';
+import Footer from '../@components/Footer';
 
 export const AppContainer: React.FC = () => {
   const dispatch = useDispatch();
@@ -37,6 +38,7 @@ export const AppContainer: React.FC = () => {
           </Paper>
         </Box>
       </Container>
+      <Footer />
     </div>
   );
 };
