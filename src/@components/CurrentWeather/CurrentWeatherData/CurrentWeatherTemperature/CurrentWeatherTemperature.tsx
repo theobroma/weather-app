@@ -1,8 +1,14 @@
 import React from 'react';
-import { Box, createStyles, makeStyles, Typography } from '@material-ui/core';
+import {
+  Box,
+  createStyles,
+  makeStyles,
+  Theme,
+  Typography,
+} from '@material-ui/core';
 import { ConditionResponseType } from '../../../../@types';
 
-const useStyles = makeStyles(() => {
+const useStyles = makeStyles((theme: Theme) => {
   return {
     ...createStyles({
       condition: {
@@ -20,8 +26,11 @@ const useStyles = makeStyles(() => {
       },
       temperature: {
         lineHeight: 1,
-        fontSize: '140px',
+        fontSize: 140,
         fontWeight: 700,
+        [theme.breakpoints.down('xs')]: {
+          fontSize: 75,
+        },
       },
     }),
   };
