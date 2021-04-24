@@ -1,22 +1,36 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
-import { Card, CardContent, Typography, makeStyles } from '@material-ui/core';
+import {
+  Card,
+  CardContent,
+  Typography,
+  makeStyles,
+  createStyles,
+  Theme,
+} from '@material-ui/core';
 
-const useStyles = makeStyles({
-  root: {
-    minWidth: 275,
-  },
-  title: {
-    fontSize: 14,
-  },
-  pos: {
-    marginBottom: 6,
-  },
-  temperature: {
-    fontWeight: 300,
-    fontSize: '24px',
-  },
+const useStyles = makeStyles((theme: Theme) => {
+  return {
+    ...createStyles({
+      root: {
+        minWidth: 275,
+        [theme.breakpoints.down('sm')]: {
+          marginBottom: 16,
+        },
+      },
+      title: {
+        fontSize: 14,
+      },
+      pos: {
+        marginBottom: 6,
+      },
+      temperature: {
+        fontWeight: 300,
+        fontSize: '24px',
+      },
+    }),
+  };
 });
 
 const ForecastDay: React.FC<Props> = ({

@@ -21,11 +21,6 @@ export const CurrentWeather: React.FC = () => {
 
   return (
     <Box p={3}>
-      <Box mb={1}>
-        <Typography variant="h6" noWrap>
-          Current Weather
-        </Typography>
-      </Box>
       <Location location={location} />
       <CurrentWeatherData currentWeather={currentWeather} />
     </Box>

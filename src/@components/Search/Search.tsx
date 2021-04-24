@@ -3,7 +3,6 @@ import {
   InputLabel,
   OutlinedInput,
   InputAdornment,
-  Typography,
   Box,
 } from '@material-ui/core';
 import React, { useCallback, useState, useEffect } from 'react';
@@ -42,12 +41,6 @@ const Search: React.FC = () => {
 
   return (
     <Box p={3}>
-      {/* <h2>Search</h2> */}
-      <Box mb={1}>
-        <Typography variant="h6" noWrap>
-          Search
-        </Typography>
-      </Box>
       <FormControl fullWidth variant="outlined">
         <InputLabel htmlFor="search-input">Search</InputLabel>
         <OutlinedInput

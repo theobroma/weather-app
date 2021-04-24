@@ -9,6 +9,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { Grid, Typography } from '@material-ui/core';
 import { CurrentWeatherResponseType } from '../../../@types';
+import CurrentWeatherTemperature from './CurrentWeatherTemperature';
 
 export const CurrentWeatherData: React.FC<Props> = ({
   currentWeather: {
@@ -38,13 +39,7 @@ export const CurrentWeatherData: React.FC<Props> = ({
     <div>
       <Grid container spacing={1}>
         <Grid item xs={12} md={6}>
-          <div>
-            <img src={condition?.icon} width="150" alt="condition" />
-            <div>
-              <p>{temp_c}&#176;C</p>
-              <p>{condition?.text}</p>
-            </div>
-          </div>
+          <CurrentWeatherTemperature temp={temp_c} condition={condition} />
         </Grid>
         <Grid item xs={12} md={6}>
           <div>
