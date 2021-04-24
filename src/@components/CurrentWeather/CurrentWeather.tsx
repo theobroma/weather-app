@@ -1,5 +1,4 @@
 import { Box } from '@material-ui/core';
-import Typography from '@material-ui/core/Typography/Typography';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { currentWeatherSelector } from '../../@store/current-weather/selectors';
