@@ -1,17 +1,18 @@
 import {
+  Box,
   FormControl,
+  InputAdornment,
   InputLabel,
   OutlinedInput,
-  InputAdornment,
-  Box,
 } from '@material-ui/core';
-import React, { useCallback, useState, useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import useDebounce from '../../@hooks/useDebounce';
 import { getCurrentWeatherTC } from '../../@store/current-weather/slice';
 import { getForecastTC } from '../../@store/forecast/slice';
 import { searchDataSelector } from '../../@store/search/selectors';
 import { clearDataAC, searchTC } from '../../@store/search/slice';
+import SearchOutput from './SearchOutput';
 
 const Search: React.FC = () => {
   const dispatch = useDispatch();
@@ -51,7 +52,9 @@ const Search: React.FC = () => {
           labelWidth={60}
         />
       </FormControl>
-      {searchData.map((d) => (
+
+      <SearchOutput searchData={searchData} onClick={onPlaceClick} />
+      {/* {searchData.map((d) => (
         <div
           key={d.id}
           onClick={() => onPlaceClick(d.lat, d.lon)}
@@ -60,7 +63,7 @@ const Search: React.FC = () => {
         >
           {d.name}
         </div>
-      ))}
+      ))} */}
     </Box>
   );
 };
