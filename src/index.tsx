@@ -21,7 +21,11 @@ const rootEl = document.getElementById('root');
 render(
   <React.StrictMode>
     <Provider store={store}>
-      <PersistGate loading={<LoadingPage />} persistor={persistor}>
+      <PersistGate
+        loading={<LoadingPage />}
+        persistor={persistor}
+        onBeforeLift={() => new Promise((resolve) => setTimeout(resolve, 500))} // delay
+      >
         <ThemeProvider theme={theme}>
           <CssBaseline />
           <AppContainer />
