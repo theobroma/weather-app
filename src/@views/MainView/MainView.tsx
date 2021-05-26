@@ -1,29 +1,19 @@
+import { Box, Container, Grid, Paper } from '@material-ui/core';
 import React, { useEffect } from 'react';
-import { Box, Container, Grid } from '@material-ui/core';
-import { useDispatch, useSelector } from 'react-redux';
-import { nanoid } from 'nanoid';
+import { useDispatch } from 'react-redux';
+import SimpleAppBar from '../../@components/AppBar';
+import CurrentWeather from '../../@components/CurrentWeather';
 import Footer from '../../@components/Footer';
-import { SimpleAppBar } from '../../@components/AppBar/AppBar';
+import Forecast from '../../@components/Forecast';
+import Search from '../../@components/Search';
+import { getUserCoordinatesTC } from '../../@store/current-weather/slice';
 
 const MainView: React.FC = () => {
-  //   const dispatch = useDispatch();
-  //   const {
-  //     data: { page, total_pages, results: trendingAllmovies },
-  //     isLoading,
-  //   } = useSelector(trendingSelector);
+  const dispatch = useDispatch();
 
-  //   const handlePageChange = (
-  //     event: React.ChangeEvent<unknown>,
-  //     value: number,
-  //   ) => {
-  //     dispatch(setPageAC(value));
-  //     // Scroll to top when page changes
-  //     window.scroll(0, 0);
-  //   };
-
-  //   useEffect(() => {
-  //     dispatch(getTrendingAllTC({ page }));
-  //   }, [dispatch, page]);
+  useEffect(() => {
+    dispatch(getUserCoordinatesTC());
+  }, [dispatch]);
 
   return (
     <div className="HolyGrail">
@@ -33,18 +23,27 @@ const MainView: React.FC = () => {
       <div className="HolyGrail-content">
         <Container maxWidth="lg">
           <Grid container spacing={3} style={{ padding: 3 }}>
-            <Grid item xs={12} sm={4} md={3} lg={2} key={nanoid()}>
-              item1
+            <Grid item xs={12}>
+              <Box mb={1}>
+                <Paper elevation={3}>
+                  <Search />
+                </Paper>
+              </Box>
             </Grid>
-            {/* {trendingAllmovies?.map((movie) => (
-              <Grid item xs={12} sm={4} md={3} lg={2} key={nanoid()}>
-                {isLoading ? (
-                  <SingleContentSkeleton />
-                ) : (
-                  <SingleContent movie={movie} />
-                )}
-              </Grid>
-            ))} */}
+            <Grid item xs={12}>
+              <Box mb={1}>
+                <Paper elevation={3}>
+                  <CurrentWeather />
+                </Paper>
+              </Box>
+            </Grid>
+            <Grid item xs={12}>
+              <Box mb={1}>
+                <Paper elevation={3}>
+                  <Forecast />
+                </Paper>
+              </Box>
+            </Grid>
           </Grid>
         </Container>
       </div>

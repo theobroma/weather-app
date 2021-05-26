@@ -54,16 +54,6 @@ const Search: React.FC = () => {
       </FormControl>
 
       <SearchOutput searchData={searchData} onClick={onPlaceClick} />
-      {/* {searchData.map((d) => (
-        <div
-          key={d.id}
-          onClick={() => onPlaceClick(d.lat, d.lon)}
-          role="menuitem"
-          aria-hidden
-        >
-          {d.name}
-        </div>
-      ))} */}
     </Box>
   );
 };

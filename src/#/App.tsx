@@ -1,3 +1,4 @@
+// usually many routes here
 import React from 'react';
 import MainView from '../@views/MainView';
 

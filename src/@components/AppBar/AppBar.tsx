@@ -39,3 +39,5 @@ export const SimpleAppBar: React.FC = () => {
     </div>
   );
 };
+
+export default SimpleAppBar;
