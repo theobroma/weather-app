@@ -53,7 +53,9 @@ const Search: React.FC = () => {
         />
       </FormControl>
 
-      <SearchOutput searchData={searchData} onClick={onPlaceClick} />
+      {searchData.length > 0 && (
+        <SearchOutput searchData={searchData} onClick={onPlaceClick} />
+      )}
     </Box>
   );
 };
