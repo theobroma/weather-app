@@ -5,12 +5,12 @@ import {
   DayResponseType,
   HourResponseType,
 } from '../@types';
-import { API_KEY, instance } from './api';
+import { instance } from './api';
 
 export const forecastAPI = {
   dailyWeather(days: number, lat: number, lon: number) {
     return instance.get<ForecastType>(
-      `/forecast.json?key=${API_KEY}&q=${lat},${lon}&days=${days}`,
+      `/forecast.json?q=${lat},${lon}&days=${days}`,
     );
   },
 };
