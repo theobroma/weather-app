@@ -5,7 +5,7 @@ const forecastInitialState = {
   forecastday: [] as Array<ForecastdayResponseType>,
 };
 
-export const getForecastTC = createAsyncThunk(
+export const getForecastTC = createAsyncThunk<any, any, any>(
   'forecast/getForecast',
   async (param: { days: number; lat: number; lon: number }, thunkAPI) => {
     try {
@@ -15,7 +15,7 @@ export const getForecastTC = createAsyncThunk(
         param.lon,
       );
       return { forecastday: res.data.forecast.forecastday };
-    } catch (err) {
+    } catch (err: any) {
       // Use `err.response.data` as `action.payload` for a `rejected` action,
       // by explicitly returning it using the `rejectWithValue()` utility
       return thunkAPI.rejectWithValue(err.response.data);

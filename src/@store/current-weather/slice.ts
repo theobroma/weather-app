@@ -23,14 +23,14 @@ export const getUserCoordinatesTC = createAsyncThunk(
   },
 );
 
-export const getCurrentWeatherTC = createAsyncThunk(
+export const getCurrentWeatherTC = createAsyncThunk<any, any, any>(
   'currentWeather/getCurrentWeather',
   async (param: { lat: number; lon: number }, thunkAPI) => {
     try {
       const res = await currentWeatherApi.currentWeather(param.lat, param.lon);
       thunkAPI.dispatch(setLocationAC(res.data.location));
       return { currentWeather: res.data.current };
-    } catch (err) {
+    } catch (err: any) {
       // Use `err.response.data` as `action.payload` for a `rejected` action,
       // by explicitly returning it using the `rejectWithValue()` utility
       return thunkAPI.rejectWithValue(err.response.data);

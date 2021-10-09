@@ -6,13 +6,13 @@ const searchInitialState = {
   data: [] as Array<searchPlaceResponseType>,
 };
 
-export const searchTC = createAsyncThunk(
+export const searchTC = createAsyncThunk<any, any, any>(
   'search/searchTC',
   async (place: string, thunkAPI) => {
     try {
       const res = await searchAPI.place(place);
       return { data: res.data };
-    } catch (err) {
+    } catch (err: any) {
       return thunkAPI.rejectWithValue(err.response.data);
     }
   },
