@@ -3,11 +3,10 @@ import { render } from 'react-dom';
 import './index.css';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
-import { CssBaseline, ThemeProvider } from '@material-ui/core';
 import { AppContainer } from './#/App';
 import { store, persistor } from './configureStore';
 import LoadingPage from './@components/UI/LoadingPage';
-import { theme } from './@themes/theme';
+import AppThemeProvider from './@themes/theme';
 import reportWebVitals from './reportWebVitals';
 
 // All styles
@@ -26,10 +25,9 @@ render(
         persistor={persistor}
         onBeforeLift={() => new Promise((resolve) => setTimeout(resolve, 500))} // delay
       >
-        <ThemeProvider theme={theme}>
-          <CssBaseline />
+        <AppThemeProvider>
           <AppContainer />
-        </ThemeProvider>
+        </AppThemeProvider>
       </PersistGate>
     </Provider>
   </React.StrictMode>,
