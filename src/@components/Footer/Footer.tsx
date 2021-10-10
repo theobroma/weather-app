@@ -47,6 +47,8 @@ const Footer: React.FC = () => {
             <IconButton
               color="inherit"
               href="https://github.com/theobroma/weather-app"
+              data-testid="github-link"
+              aria-label="Github Link"
             >
               <GitHubIcon />
             </IconButton>
