@@ -34,7 +34,7 @@ export const SimpleAppBar: React.FC = () => {
             </Typography>
             <div className={classes.grow} />
             {/* TODO: */}
-            {/* <ThemeMenu /> */}
+            <ThemeMenu />
             <Box>
               {currentTheme === THEME_COLORS.LIGHT ? (
                 <Tooltip title="Switch theme to Dark">

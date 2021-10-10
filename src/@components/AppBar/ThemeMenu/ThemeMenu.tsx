@@ -1,50 +1,32 @@
-import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-import Menu, { MenuProps } from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import DraftsIcon from '@material-ui/icons/Drafts';
-import SendIcon from '@material-ui/icons/Send';
+// https://stackoverflow.com/a/55533600/3988363
+import React, { useState } from 'react';
+import FormatColorFillIcon from '@material-ui/icons/FormatColorFill';
+import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked';
+import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
+import { IconButton } from '@material-ui/core';
+import { StyledMenu, StyledMenuItem } from './ThemeMenu.styles';
 
-const StyledMenu = withStyles({
-  paper: {
-    border: '1px solid #d3d4d5',
-  },
-})((props: MenuProps) => (
-  <Menu
-    elevation={0}
-    getContentAnchorEl={null}
-    anchorOrigin={{
-      vertical: 'bottom',
-      horizontal: 'center',
-    }}
-    transformOrigin={{
-      vertical: 'top',
-      horizontal: 'center',
-    }}
-    {...props}
-  />
-));
-
-const StyledMenuItem = withStyles((theme) => ({
-  root: {
-    '&:focus': {
-      backgroundColor: theme.palette.primary.main,
-      '& .MuiListItemIcon-root, & .MuiListItemText-primary': {
-        color: theme.palette.common.white,
-      },
-    },
-  },
-}))(MenuItem);
+const options = [
+  'Show some love to Material-UI',
+  'Show all notification content',
+  'Hide sensitive notification content',
+  'Hide all notification content',
+];
 
 export default function ThemeMenu() {
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const [selectedIndex, setSelectedIndex] = useState(1);
 
-  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+  const handleClickListItem = (event: any) => {
     setAnchorEl(event.currentTarget);
+  };
+
+  const handleMenuItemClick = (
+    event: React.MouseEvent<HTMLElement>,
+    index: number,
+  ) => {
+    setSelectedIndex(index);
+    setAnchorEl(null);
   };
 
   const handleClose = () => {
@@ -53,40 +35,41 @@ export default function ThemeMenu() {
 
   return (
     <div>
-      <Button
-        aria-controls="customized-menu"
+      <IconButton
+        aria-label="more"
+        aria-controls="long-menu"
         aria-haspopup="true"
-        variant="contained"
-        color="primary"
-        onClick={handleClick}
       >
-        Open Menu
-      </Button>
+        <FormatColorFillIcon onClick={(e) => handleClickListItem(e)} />
+      </IconButton>
       <StyledMenu
-        id="customized-menu"
+        id="lock-menu"
         anchorEl={anchorEl}
         keepMounted
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <StyledMenuItem>
-          <ListItemIcon>
-            <SendIcon fontSize="small" />
-          </ListItemIcon>
-          <ListItemText primary="Sent mail" />
-        </StyledMenuItem>
-        <StyledMenuItem>
-          <ListItemIcon>
-            <DraftsIcon fontSize="small" />
-          </ListItemIcon>
-          <ListItemText primary="Drafts" />
-        </StyledMenuItem>
-        <StyledMenuItem>
-          <ListItemIcon>
-            <InboxIcon fontSize="small" />
-          </ListItemIcon>
-          <ListItemText primary="Inbox" />
-        </StyledMenuItem>
+        {options.map((option, index) => (
+          <StyledMenuItem
+            key={option}
+            // disabled={index === 0}
+            selected={index === selectedIndex}
+            onClick={(event) => handleMenuItemClick(event, index)}
+          >
+            {index === selectedIndex ? (
+              <RadioButtonCheckedIcon
+                fontSize="small"
+                style={{ marginRight: '8px' }}
+              />
+            ) : (
+              <RadioButtonUncheckedIcon
+                fontSize="small"
+                style={{ marginRight: '8px' }}
+              />
+            )}
+            {option}
+          </StyledMenuItem>
+        ))}
       </StyledMenu>
     </div>
   );
