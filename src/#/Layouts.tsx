@@ -11,10 +11,12 @@ interface ILayout {
 export const GuestLayout: React.FC<ILayout> = ({ children }) => {
   return (
     <div className="HolyGrail">
-      <Box mb={2}>
-        <SimpleAppBar />
-      </Box>
-      <main className="HolyGrail-content">{children}</main>
+      <SimpleAppBar />
+      <main className="HolyGrail-content">
+        <Box mt={2} mb={2}>
+          {children}
+        </Box>
+      </main>
       <Footer />
     </div>
   );
