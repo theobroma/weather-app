@@ -10,6 +10,7 @@ import { themeSelector } from '../../@store/ui/selectors';
 import { setThemeAC } from '../../@store/ui/slice';
 import { ThemeColorsType, THEME_COLORS } from '../../@types';
 import { useStyles } from './AppBar.styles';
+import ThemeMenu from './ThemeMenu/ThemeMenu';
 
 export const SimpleAppBar: React.FC = () => {
   const classes = useStyles();
@@ -32,6 +33,8 @@ export const SimpleAppBar: React.FC = () => {
               Weather App
             </Typography>
             <div className={classes.grow} />
+            {/* TODO: */}
+            {/* <ThemeMenu /> */}
             <Box>
               {currentTheme === THEME_COLORS.LIGHT ? (
                 <Tooltip title="Switch theme to Dark">
