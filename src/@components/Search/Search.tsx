@@ -5,6 +5,7 @@ import {
   InputLabel,
   OutlinedInput,
 } from '@material-ui/core';
+import SearchIcon from '@material-ui/icons/Search';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import useDebounce from '../../@hooks/useDebounce';
@@ -48,7 +49,11 @@ const Search: React.FC = () => {
           id="search-input"
           value={searchVal}
           onChange={handleChange()}
-          startAdornment={<InputAdornment position="start">$</InputAdornment>}
+          startAdornment={
+            <InputAdornment position="start">
+              <SearchIcon />
+            </InputAdornment>
+          }
           labelWidth={60}
         />
       </FormControl>
