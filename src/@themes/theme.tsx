@@ -75,12 +75,50 @@ const DARK_THEME = {
   },
 };
 
+const DEEP_PURPLE_AMBER_THEME = {
+  palette: {
+    type: 'light' as PaletteType,
+    background: {
+      paper: '#f5f5f5', // Gray 100 - Background of "Paper" based component
+      default: '#FFFFFF',
+    },
+    primary: {
+      main: '#673ab7',
+      contrastText: '#fff',
+    },
+    secondary: {
+      main: '#ffd740',
+      contrastText: '#000',
+    },
+    ...FRONT_COLORS,
+  },
+};
+
+const PINK_BLUE_GREY_THEME = {
+  palette: {
+    type: 'dark' as PaletteType,
+    background: {
+      paper: '#424242', // Gray 800 - Background of "Paper" based component
+      default: '#303030',
+    },
+    primary: {
+      main: '#e91e63;', // Green 300
+      contrastText: '#000000',
+    },
+    secondary: {
+      main: '#607d8b;', // Orange 300
+      contrastText: '#000',
+    },
+    ...FRONT_COLORS,
+  },
+};
+
 const AppThemeProvider: React.FC = ({ children }) => {
   const currentTheme = useSelector(themeSelector);
   const theme =
-    currentTheme === THEME_COLORS.DARK
-      ? createTheme(DARK_THEME)
-      : createTheme(LIGHT_THEME);
+    currentTheme === THEME_COLORS.LIGHT
+      ? createTheme(DEEP_PURPLE_AMBER_THEME)
+      : createTheme(PINK_BLUE_GREY_THEME);
 
   return (
     <ThemeProvider theme={theme}>
