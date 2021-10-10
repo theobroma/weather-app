@@ -2,7 +2,7 @@ import React from 'react';
 import { CssBaseline, PaletteType } from '@material-ui/core';
 import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import { useSelector } from 'react-redux';
-// import { themeSelector } from '../@store/ui/selectors';
+import { themeSelector } from '../@store/ui/selectors';
 import { THEME_COLORS } from '../@types';
 
 /**
@@ -76,13 +76,11 @@ const DARK_THEME = {
 };
 
 const AppThemeProvider: React.FC = ({ children }) => {
-  //   const currentTheme = useSelector(themeSelector);
-  //   const theme =
-  //     currentTheme === THEME_COLORS.DARK
-  //       ? createMuiTheme(DARK_THEME)
-  //       : createMuiTheme(LIGHT_THEME);
-
-  const theme = createTheme(LIGHT_THEME);
+  const currentTheme = useSelector(themeSelector);
+  const theme =
+    currentTheme === THEME_COLORS.DARK
+      ? createTheme(DARK_THEME)
+      : createTheme(LIGHT_THEME);
 
   return (
     <ThemeProvider theme={theme}>
