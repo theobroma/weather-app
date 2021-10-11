@@ -1,29 +1,13 @@
-import { Box, Container, IconButton, Tooltip } from '@material-ui/core';
+import { Container } from '@material-ui/core';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import NightIcon from '@material-ui/icons/Brightness3';
-import DayIcon from '@material-ui/icons/Brightness5';
-import React, { useCallback } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { themeSelector } from '../../@store/ui/selectors';
-import { setThemeAC } from '../../@store/ui/slice';
-import { ThemeColorsType, THEME_COLORS } from '../../@types';
+import React from 'react';
 import { useStyles } from './AppBar.styles';
 import ThemeMenu from './ThemeMenu/ThemeMenu';
 
 export const SimpleAppBar: React.FC = () => {
   const classes = useStyles();
-  const dispatch = useDispatch();
-  const currentTheme = useSelector(themeSelector);
-
-  const handleSwitchTheme = useCallback(
-    (theme: ThemeColorsType) => {
-      dispatch(setThemeAC(theme));
-    },
-    [dispatch],
-  );
-
   return (
     <div className={classes.grow}>
       <AppBar position="static">
@@ -33,27 +17,7 @@ export const SimpleAppBar: React.FC = () => {
               Weather App
             </Typography>
             <div className={classes.grow} />
-            {/* TODO: */}
             <ThemeMenu />
-            <Box>
-              {currentTheme === THEME_COLORS.LIGHT ? (
-                <Tooltip title="Switch theme to Dark">
-                  <IconButton aria-label="theme">
-                    <NightIcon
-                      onClick={() => handleSwitchTheme(THEME_COLORS.DARK)}
-                    />
-                  </IconButton>
-                </Tooltip>
-              ) : (
-                <Tooltip title="Switch theme to Light">
-                  <IconButton aria-label="theme">
-                    <DayIcon
-                      onClick={() => handleSwitchTheme(THEME_COLORS.LIGHT)}
-                    />
-                  </IconButton>
-                </Tooltip>
-              )}
-            </Box>
           </Toolbar>
         </Container>
       </AppBar>

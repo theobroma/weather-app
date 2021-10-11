@@ -4,10 +4,11 @@ import FormatColorFillIcon from '@material-ui/icons/FormatColorFill';
 import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked';
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
 import { IconButton } from '@material-ui/core';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { StyledMenu, StyledMenuItem } from './ThemeMenu.styles';
 import { ThemeColorsType } from '../../../@types';
 import { setThemeAC } from '../../../@store/ui/slice';
+import { themeSelector } from '../../../@store/ui/selectors';
 
 const options = [
   'light',
@@ -18,10 +19,13 @@ const options = [
 
 export default function ThemeMenu() {
   const dispatch = useDispatch();
+  const currentTheme = useSelector(themeSelector);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const [selectedIndex, setSelectedIndex] = useState(1);
+  const [selectedIndex, setSelectedIndex] = useState(
+    options.indexOf(currentTheme),
+  );
 
-  const handleClickListItem = (event: any) => {
+  const handleClickListItem = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
 
@@ -44,8 +48,9 @@ export default function ThemeMenu() {
         aria-label="more"
         aria-controls="long-menu"
         aria-haspopup="true"
+        onClick={(e) => handleClickListItem(e)}
       >
-        <FormatColorFillIcon onClick={(e) => handleClickListItem(e)} />
+        <FormatColorFillIcon />
       </IconButton>
       <StyledMenu
         id="lock-menu"

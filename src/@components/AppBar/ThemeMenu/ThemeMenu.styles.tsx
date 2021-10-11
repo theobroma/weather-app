@@ -17,6 +17,11 @@ export const StyledMenu = withStyles({
       vertical: 'top',
       horizontal: 'center',
     }}
+    PaperProps={{
+      style: {
+        width: 240,
+      },
+    }}
     {...props}
   />
 ));
