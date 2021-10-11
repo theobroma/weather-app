@@ -4,16 +4,20 @@ import FormatColorFillIcon from '@material-ui/icons/FormatColorFill';
 import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked';
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
 import { IconButton } from '@material-ui/core';
+import { useDispatch } from 'react-redux';
 import { StyledMenu, StyledMenuItem } from './ThemeMenu.styles';
+import { ThemeColorsType } from '../../../@types';
+import { setThemeAC } from '../../../@store/ui/slice';
 
 const options = [
-  'Show some love to Material-UI',
-  'Show all notification content',
-  'Hide sensitive notification content',
-  'Hide all notification content',
-];
+  'light',
+  'dark',
+  'deepPurpleAmber',
+  'pinkBlueGrey',
+] as ThemeColorsType[];
 
 export default function ThemeMenu() {
+  const dispatch = useDispatch();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [selectedIndex, setSelectedIndex] = useState(1);
 
@@ -26,6 +30,7 @@ export default function ThemeMenu() {
     index: number,
   ) => {
     setSelectedIndex(index);
+    dispatch(setThemeAC(options[index]));
     setAnchorEl(null);
   };
 

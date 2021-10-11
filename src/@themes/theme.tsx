@@ -3,7 +3,6 @@ import { CssBaseline, PaletteType } from '@material-ui/core';
 import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import { useSelector } from 'react-redux';
 import { themeSelector } from '../@store/ui/selectors';
-import { THEME_COLORS } from '../@types';
 
 /**
  * Material UI theme "front" colors, "back" colors are different for Light and Dark modes
@@ -113,12 +112,16 @@ const PINK_BLUE_GREY_THEME = {
   },
 };
 
+const themeMap = {
+  light: LIGHT_THEME,
+  dark: DARK_THEME,
+  deepPurpleAmber: DEEP_PURPLE_AMBER_THEME,
+  pinkBlueGrey: PINK_BLUE_GREY_THEME,
+};
+
 const AppThemeProvider: React.FC = ({ children }) => {
   const currentTheme = useSelector(themeSelector);
-  const theme =
-    currentTheme === THEME_COLORS.LIGHT
-      ? createTheme(DEEP_PURPLE_AMBER_THEME)
-      : createTheme(PINK_BLUE_GREY_THEME);
+  const theme = createTheme(themeMap[currentTheme]);
 
   return (
     <ThemeProvider theme={theme}>

@@ -17,7 +17,7 @@ export const SimpleAppBar: React.FC = () => {
   const dispatch = useDispatch();
   const currentTheme = useSelector(themeSelector);
 
-  const handleSwitchDarkMode = useCallback(
+  const handleSwitchTheme = useCallback(
     (theme: ThemeColorsType) => {
       dispatch(setThemeAC(theme));
     },
@@ -40,7 +40,7 @@ export const SimpleAppBar: React.FC = () => {
                 <Tooltip title="Switch theme to Dark">
                   <IconButton aria-label="theme">
                     <NightIcon
-                      onClick={() => handleSwitchDarkMode(THEME_COLORS.DARK)}
+                      onClick={() => handleSwitchTheme(THEME_COLORS.DARK)}
                     />
                   </IconButton>
                 </Tooltip>
@@ -48,7 +48,7 @@ export const SimpleAppBar: React.FC = () => {
                 <Tooltip title="Switch theme to Light">
                   <IconButton aria-label="theme">
                     <DayIcon
-                      onClick={() => handleSwitchDarkMode(THEME_COLORS.LIGHT)}
+                      onClick={() => handleSwitchTheme(THEME_COLORS.LIGHT)}
                     />
                   </IconButton>
                 </Tooltip>
