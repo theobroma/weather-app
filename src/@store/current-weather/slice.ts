@@ -11,7 +11,7 @@ const currentWeatherInitialState = {
 
 export const getUserCoordinatesTC = createAsyncThunk(
   'currentWeather/getUserCoordinatesTC',
-  (undf, thunkAPI) => {
+  (_, thunkAPI) => {
     navigator.geolocation.getCurrentPosition((position) => {
       thunkAPI.dispatch(
         userCoordinatesAC({
