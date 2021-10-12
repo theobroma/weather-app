@@ -23,20 +23,22 @@ export const getUserCoordinatesTC = createAsyncThunk(
   },
 );
 
-export const getCurrentWeatherTC = createAsyncThunk<any, any, any>(
-  'currentWeather/getCurrentWeather',
-  async (param: { lat: number; lon: number }, thunkAPI) => {
-    try {
-      const res = await currentWeatherApi.currentWeather(param.lat, param.lon);
-      thunkAPI.dispatch(setLocationAC(res.data.location));
-      return { currentWeather: res.data.current };
-    } catch (err: any) {
-      // Use `err.response.data` as `action.payload` for a `rejected` action,
-      // by explicitly returning it using the `rejectWithValue()` utility
-      return thunkAPI.rejectWithValue(err.response.data);
-    }
-  },
-);
+export const getCurrentWeatherTC = createAsyncThunk<
+  // Return type of the payload creator
+  CurrentWeatherResponseType,
+  // First argument to the payload creator
+  { lat: number; lon: number },
+  // Types for ThunkAPI
+  any
+>('currentWeather/getCurrentWeather', async (param, thunkAPI) => {
+  try {
+    const res = await currentWeatherApi.currentWeather(param.lat, param.lon);
+    thunkAPI.dispatch(setLocationAC(res.data.location));
+    return res.data.current;
+  } catch (err: any) {
+    return thunkAPI.rejectWithValue(err.response.data);
+  }
+});
 
 export const slice = createSlice({
   name: 'currentWeather',
@@ -56,7 +58,7 @@ export const slice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(getCurrentWeatherTC.fulfilled, (state, action) => {
       if (action.payload) {
-        state.currentWeather = action.payload.currentWeather;
+        state.currentWeather = action.payload;
       }
     });
   },
