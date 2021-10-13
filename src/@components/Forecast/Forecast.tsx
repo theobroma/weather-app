@@ -2,19 +2,19 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { nanoid } from 'nanoid';
 import { Grid, Typography, Box } from '@material-ui/core';
-import { currentWeatherSelector } from '../../@store/current-weather/selectors';
 import { forecastdaySelector } from '../../@store/forecast/selectors';
 import { getForecastTC } from '../../@store/forecast/slice';
 import ForecastDay from './ForecastDay/ForecastDay';
+import { сoordinatesSelector } from '../../@store/сoordinates/selectors';
 
 const Forecast: React.FC = () => {
   const dispatch = useDispatch();
-  const { lon, lat } = useSelector(currentWeatherSelector);
+  const { lon, lat } = useSelector(сoordinatesSelector);
   const forecastInfo = useSelector(forecastdaySelector);
   const days = 3;
 
   useEffect(() => {
-    if (lat !== 0 && lon !== 0) {
+    if (lat !== null && lon !== null) {
       dispatch(getForecastTC({ days, lat, lon }));
     }
   }, [lat, lon, days, dispatch]);

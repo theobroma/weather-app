@@ -4,14 +4,14 @@ import { useDispatch } from 'react-redux';
 import CurrentWeather from '../../@components/CurrentWeather';
 import Forecast from '../../@components/Forecast';
 import Search from '../../@components/Search';
-import { getUserCoordinatesTC } from '../../@store/current-weather/slice';
+// import { getUserCoordinatesTC } from '../../@store/current-weather/slice';
 import { setUserCoordinatesTC } from '../../@store/сoordinates/slice';
 
 const MainView: React.FC = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getUserCoordinatesTC());
+    // dispatch(getUserCoordinatesTC());
     dispatch(setUserCoordinatesTC());
   }, [dispatch]);
 
