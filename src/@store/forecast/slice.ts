@@ -1,7 +1,10 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { forecastAPI, ForecastdayResponseType } from '../../@api/forecast-api';
+import { LocationType, CurrentWeatherType } from '../../@types';
 
 const forecastInitialState = {
+  location: {} as LocationType,
+  currentWeather: {} as CurrentWeatherType,
   forecastday: [] as Array<ForecastdayResponseType>,
 };
 
@@ -14,7 +17,8 @@ export const getForecastTC = createAsyncThunk<any, any, any>(
         param.lat,
         param.lon,
       );
-      return { forecastday: res.data.forecast.forecastday };
+      // return { forecastday: res.data.forecast.forecastday };
+      return res.data;
     } catch (err: any) {
       // Use `err.response.data` as `action.payload` for a `rejected` action,
       // by explicitly returning it using the `rejectWithValue()` utility
@@ -30,7 +34,10 @@ export const slice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(getForecastTC.fulfilled, (state, action) => {
       if (action.payload) {
-        state.forecastday = action.payload.forecastday;
+        // state.forecastday = action.payload.forecastday;
+        state.location = action.payload.location;
+        state.currentWeather = action.payload.current;
+        state.forecastday = action.payload.forecast.forecastday;
       }
     });
   },
