@@ -1,10 +1,10 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { currentWeatherApi } from '../../@api/currentWeather-api';
-import { CurrentWeatherResponseType, LocationResponseType } from '../../@types';
+import { CurrentWeatherType, LocationType } from '../../@types';
 
 const currentWeatherInitialState = {
-  location: {} as LocationResponseType,
-  currentWeather: {} as CurrentWeatherResponseType,
+  location: {} as LocationType,
+  currentWeather: {} as CurrentWeatherType,
 };
 
 export const getCurrentWeatherTC = createAsyncThunk<

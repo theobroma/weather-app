@@ -14,7 +14,7 @@ import {
   makeStyles,
   Typography,
 } from '@material-ui/core';
-import { CurrentWeatherResponseType } from '../../../@types';
+import { CurrentWeatherType } from '../../../@types';
 import CurrentWeatherTemperature from './CurrentWeatherTemperature';
 
 const useStyles = makeStyles(() => {
@@ -150,5 +150,5 @@ export const CurrentWeatherData: React.FC<Props> = ({
 };
 
 type Props = {
-  currentWeather: CurrentWeatherResponseType;
+  currentWeather: CurrentWeatherType;
 };

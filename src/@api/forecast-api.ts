@@ -1,6 +1,6 @@
 import {
-  LocationResponseType,
-  CurrentWeatherResponseType,
+  LocationType,
+  CurrentWeatherType,
   AstroResponseType,
   DayResponseType,
   HourResponseType,
@@ -16,8 +16,8 @@ export const forecastAPI = {
 };
 
 export type ForecastType = {
-  location: LocationResponseType;
-  current: CurrentWeatherResponseType;
+  location: LocationType;
+  current: CurrentWeatherType;
   forecast: ForecastDayInfoType;
 };
 
