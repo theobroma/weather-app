@@ -1,65 +1,54 @@
-export type ForecastDayInfoType = {
-  forecastday: Array<ForecastdayResponseType>;
-};
-
-export type ForecastdayResponseType = {
-  date: string;
-  day: DayResponseType;
-  astro: AstroResponseType;
-  hour: Array<HourResponseType>;
-};
-
-export type ConditionResponseType = {
-  text: string;
-  icon: string;
+export type ConditionType = {
   code: number;
+  icon: string;
+  text: string;
 };
 
-export type DayResponseType = {
-  maxtemp_c: number;
-  mintemp_c: number;
-  avgtemp_c: number;
-  maxwind_kph: number;
-  totalprecip_mm: number;
+export type DayType = {
   avghumidity: number;
-  daily_will_it_rain: number;
+  avgtemp_c: number;
+  condition: ConditionType;
   daily_chance_of_rain: string;
-  daily_will_it_snow: number;
   daily_chance_of_snow: string;
+  daily_will_it_rain: number;
+  daily_will_it_snow: number;
+  maxtemp_c: number;
+  maxwind_kph: number;
+  mintemp_c: number;
+  totalprecip_mm: number;
   uv: number;
-  condition: ConditionResponseType;
 };
 
-export type AstroResponseType = {
-  sunrise: string;
-  sunset: string;
+export type AstroType = {
+  moon_illumination: string;
+  moon_phase: string;
   moonrise: string;
   moonset: string;
-  moon_phase: string;
-  moon_illumination: string;
+  sunrise: string;
+  sunset: string;
 };
 
-export type HourResponseType = {
-  time: string;
-  temp_c: number;
+export type HourType = {
+  chance_of_rain: string;
+  chance_of_snow: string;
+  cloud: number;
+  condition: ConditionType;
+  dewpoint_c: number;
+  feelslike_c: number;
+  gust_kph: number;
+  heatindex_c: number;
+  humidity: number;
   is_day: number;
-  wind_kph: number;
+  precip_in: number;
+  precip_mm: number;
+  pressure_in: number;
+  pressure_mb: number;
+  temp_c: number;
+  time: string;
+  will_it_rain: number;
+  will_it_snow: number;
   wind_degree: number;
   wind_dir: string;
-  pressure_mb: number;
-  pressure_in: number;
-  precip_mm: number;
-  precip_in: number;
-  humidity: number;
-  cloud: number;
-  feelslike_c: number;
+  wind_kph: number;
   windchill_c: number;
-  heatindex_c: number;
-  dewpoint_c: number;
-  will_it_rain: number;
-  chance_of_rain: string;
-  will_it_snow: number;
-  chance_of_snow: string;
-  gust_kph: number;
-  condition: ConditionResponseType;
 };

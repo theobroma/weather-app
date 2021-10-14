@@ -6,7 +6,7 @@ import {
   Theme,
   Typography,
 } from '@material-ui/core';
-import { ConditionResponseType } from '../../../../@types';
+import { ConditionType } from '../../../../@types';
 
 const useStyles = makeStyles((theme: Theme) => {
   return {
@@ -73,7 +73,7 @@ const CurrentWeatherTemperature: React.FC<Props> = ({ temp, condition }) => {
 
 type Props = {
   temp: number;
-  condition: ConditionResponseType;
+  condition: ConditionType;
 };
 
 export default CurrentWeatherTemperature;

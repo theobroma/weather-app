@@ -5,5 +5,5 @@ export const forecastSelector = (state: RootState) => {
 };
 
 export const forecastdaySelector = (state: RootState) => {
-  return state.forecast.forecastday;
+  return state.forecast.forecast.forecastday;
 };

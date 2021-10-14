@@ -1,11 +1,13 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { forecastAPI, ForecastdayResponseType } from '../../@api/forecast-api';
-import { LocationType, CurrentWeatherType } from '../../@types';
+import { forecastAPI } from '../../@api/forecast-api';
+import { LocationType, CurrentWeatherType, ForecastType } from '../../@types';
 
 const forecastInitialState = {
   location: {} as LocationType,
   currentWeather: {} as CurrentWeatherType,
-  forecastday: [] as Array<ForecastdayResponseType>,
+  forecast: {
+    forecastday: [],
+  } as ForecastType,
 };
 
 export const getForecastTC = createAsyncThunk<any, any, any>(
@@ -37,7 +39,7 @@ export const slice = createSlice({
         // state.forecastday = action.payload.forecastday;
         state.location = action.payload.location;
         state.currentWeather = action.payload.current;
-        state.forecastday = action.payload.forecast.forecastday;
+        state.forecast = action.payload.forecast;
       }
     });
   },
