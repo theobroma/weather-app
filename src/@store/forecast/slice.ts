@@ -1,6 +1,12 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { forecastAPI } from '../../@api/forecast-api';
-import { LocationType, CurrentWeatherType, ForecastType } from '../../@types';
+import {
+  LocationType,
+  CurrentWeatherType,
+  ForecastType,
+  ForecastResponseType,
+} from '../../@types';
+import { сoordinatesInitialStateType } from '../сoordinates/slice';
 
 const forecastInitialState = {
   location: {} as LocationType,
@@ -10,24 +16,26 @@ const forecastInitialState = {
   } as ForecastType,
 };
 
-export const getForecastTC = createAsyncThunk<any, any, any>(
-  'forecast/getForecast',
-  async (param: { days: number; lat: number; lon: number }, thunkAPI) => {
-    try {
-      const res = await forecastAPI.dailyWeather(
-        param.days,
-        param.lat,
-        param.lon,
-      );
-      // return { forecastday: res.data.forecast.forecastday };
-      return res.data;
-    } catch (err: any) {
-      // Use `err.response.data` as `action.payload` for a `rejected` action,
-      // by explicitly returning it using the `rejectWithValue()` utility
-      return thunkAPI.rejectWithValue(err.response.data);
-    }
-  },
-);
+export type forecastInitialStateType = typeof forecastInitialState;
+
+// https://stackoverflow.com/questions/67279037/the-thunkapi-getstate-method-does-not-correctly-infer-the-state-type
+export const getForecastTC = createAsyncThunk<
+  ForecastResponseType,
+  { days: number; lat: number; lon: number },
+  { state: { сoordinates: сoordinatesInitialStateType } }
+>('forecast/getForecast', async (param, thunkAPI) => {
+  const state = thunkAPI.getState();
+  try {
+    const res = await forecastAPI.dailyWeather(
+      param.days,
+      Number(state.сoordinates.lat),
+      Number(state.сoordinates.lon),
+    );
+    return res.data;
+  } catch (err: any) {
+    return thunkAPI.rejectWithValue(err.response.data);
+  }
+});
 
 export const slice = createSlice({
   name: 'forecast',
@@ -36,7 +44,6 @@ export const slice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(getForecastTC.fulfilled, (state, action) => {
       if (action.payload) {
-        // state.forecastday = action.payload.forecastday;
         state.location = action.payload.location;
         state.currentWeather = action.payload.current;
         state.forecast = action.payload.forecast;

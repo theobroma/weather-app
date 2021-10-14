@@ -5,6 +5,8 @@ const сoordinatesInitialState = {
   lon: null as number | null, // lon: 33.3767724,
 };
 
+export type сoordinatesInitialStateType = typeof сoordinatesInitialState;
+
 export const setUserCoordinatesTC = createAsyncThunk(
   'сoordinates/setUserCoordinatesTC',
   (_, thunkAPI) => {
