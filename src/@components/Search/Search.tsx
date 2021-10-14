@@ -9,10 +9,10 @@ import SearchIcon from '@material-ui/icons/Search';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import useDebounce from '../../@hooks/useDebounce';
-import { getCurrentWeatherTC } from '../../@store/current-weather/slice';
 import { getForecastTC } from '../../@store/forecast/slice';
 import { searchDataSelector } from '../../@store/search/selectors';
 import { clearDataAC, searchTC } from '../../@store/search/slice';
+import { setCoordinatesAC } from '../../@store/сoordinates/slice';
 import SearchOutput from './SearchOutput';
 
 const Search: React.FC = () => {
@@ -20,12 +20,12 @@ const Search: React.FC = () => {
   const searchData = useSelector(searchDataSelector);
   const [searchVal, setSearchVal] = useState('');
   const debouncedSearchTerm = useDebounce(searchVal, 300);
-  const days = 3;
 
   const onPlaceClick = useCallback(
     (lat: number, lon: number) => {
-      dispatch(getCurrentWeatherTC({ lat, lon }));
-      dispatch(getForecastTC({ days, lat, lon }));
+      dispatch(setCoordinatesAC({ lat, lon }));
+      const days = 3; // Limited for free plan
+      dispatch(getForecastTC({ days }));
       dispatch(clearDataAC());
       setSearchVal('');
     },

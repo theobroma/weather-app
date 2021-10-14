@@ -1,19 +1,29 @@
 import { Box, Container, Grid, Paper } from '@material-ui/core';
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import CurrentWeather from '../../@components/CurrentWeather';
 import Forecast from '../../@components/Forecast';
 import Search from '../../@components/Search';
-// import { getUserCoordinatesTC } from '../../@store/current-weather/slice';
+import { getForecastTC } from '../../@store/forecast/slice';
+import { сoordinatesSelector } from '../../@store/сoordinates/selectors';
 import { setUserCoordinatesTC } from '../../@store/сoordinates/slice';
 
 const MainView: React.FC = () => {
   const dispatch = useDispatch();
+  const { lon, lat } = useSelector(сoordinatesSelector);
 
   useEffect(() => {
-    // dispatch(getUserCoordinatesTC());
-    dispatch(setUserCoordinatesTC());
-  }, [dispatch]);
+    if (lat === null && lon === null) {
+      dispatch(setUserCoordinatesTC());
+    }
+  }, [lat, lon, dispatch]);
+
+  useEffect(() => {
+    const days = 3; // Limited for free plan
+    if (lat !== null && lon !== null) {
+      dispatch(getForecastTC({ days }));
+    }
+  }, [lat, lon, dispatch]);
 
   return (
     <Container maxWidth="lg">
