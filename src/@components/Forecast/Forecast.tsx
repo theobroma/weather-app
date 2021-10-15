@@ -1,9 +1,8 @@
+import { Box, Grid, Typography } from '@material-ui/core';
+import { nanoid } from '@reduxjs/toolkit';
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { nanoid } from 'nanoid';
-import { Grid, Typography, Box } from '@material-ui/core';
 import { forecastdaySelector } from '../../@store/forecast/selectors';
-
 import ForecastDay from './ForecastDay/ForecastDay';
 
 const Forecast: React.FC = () => {
