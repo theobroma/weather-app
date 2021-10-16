@@ -40,11 +40,6 @@ export type ForecastdayType = {
 
 // ======== Responses ========
 
-export type CurrentWeatherResponseType = {
-  current: CurrentWeatherType;
-  location: LocationType;
-};
-
 export type ForecastResponseType = {
   current: CurrentWeatherType;
   forecast: ForecastType;
