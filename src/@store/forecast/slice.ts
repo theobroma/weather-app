@@ -6,6 +6,7 @@ import {
   ForecastType,
   ForecastResponseType,
 } from '../../@types';
+import { waitForMe } from '../../@utils/waitforme';
 import { сoordinatesInitialStateType } from '../сoordinates/slice';
 
 const forecastInitialState = {
@@ -14,6 +15,11 @@ const forecastInitialState = {
   forecast: {
     forecastday: [],
   } as ForecastType,
+  // utils
+  isFetching: false,
+  isSuccess: false,
+  isError: false,
+  errorMessage: '',
 };
 
 export type forecastInitialStateType = typeof forecastInitialState;
@@ -26,6 +32,7 @@ export const getForecastTC = createAsyncThunk<
 >('forecast/getForecast', async (param, thunkAPI) => {
   const state = thunkAPI.getState();
   try {
+    await waitForMe(500);
     const res = await forecastAPI.dailyWeather(
       param.days,
       Number(state.сoordinates.lat || 0),
@@ -42,11 +49,23 @@ export const slice = createSlice({
   initialState: forecastInitialState,
   reducers: {},
   extraReducers: (builder) => {
+    builder.addCase(getForecastTC.pending, (state) => {
+      state.isFetching = true;
+    });
     builder.addCase(getForecastTC.fulfilled, (state, action) => {
       if (action.payload) {
         state.location = action.payload.location;
         state.currentWeather = action.payload.current;
         state.forecast = action.payload.forecast;
+      }
+      state.isFetching = false;
+      state.isSuccess = true;
+    });
+    builder.addCase(getForecastTC.rejected, (state, action) => {
+      state.isFetching = false;
+      state.isError = true;
+      if (action.payload instanceof Error) {
+        state.errorMessage = action.payload.message;
       }
     });
   },

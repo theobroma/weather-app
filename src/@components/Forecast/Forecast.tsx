@@ -2,11 +2,16 @@ import { Box, Grid, Typography } from '@material-ui/core';
 import { nanoid } from '@reduxjs/toolkit';
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { forecastdaySelector } from '../../@store/forecast/selectors';
+import {
+  forecastdaySelector,
+  forecastSelector,
+} from '../../@store/forecast/selectors';
+import GridProgress from '../UI/GridProgress/GridProgress';
 import ForecastDay from './ForecastDay/ForecastDay';
 
 const Forecast: React.FC = () => {
   const forecastday = useSelector(forecastdaySelector);
+  const { isFetching } = useSelector(forecastSelector);
 
   const currentWeekday = { weekday: 'long' } as const;
   const currentDate = {
@@ -23,7 +28,7 @@ const Forecast: React.FC = () => {
         </Typography>
       </Box>
       <Box>
-        <Grid container spacing={1}>
+        <GridProgress container spacing={1} loading={isFetching}>
           {forecastday.map((d) => {
             const adaptedDate = new Date(d.date);
             return (
@@ -41,7 +46,7 @@ const Forecast: React.FC = () => {
               </Grid>
             );
           })}
-        </Grid>
+        </GridProgress>
       </Box>
     </Box>
   );
