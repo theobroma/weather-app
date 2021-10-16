@@ -32,7 +32,7 @@ export const getForecastTC = createAsyncThunk<
 >('forecast/getForecast', async (param, thunkAPI) => {
   const state = thunkAPI.getState();
   try {
-    await waitForMe(500);
+    await waitForMe(300);
     const res = await forecastAPI.dailyWeather(
       param.days,
       Number(state.сoordinates.lat || 0),

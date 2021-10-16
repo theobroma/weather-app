@@ -3,6 +3,7 @@ import {
   FormControl,
   InputAdornment,
   InputLabel,
+  makeStyles,
   OutlinedInput,
 } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
@@ -15,8 +16,17 @@ import { clearDataAC, searchTC } from '../../@store/search/slice';
 import { setCoordinatesAC } from '../../@store/сoordinates/slice';
 import SearchOutput from './SearchOutput';
 
+export const useStyles = makeStyles(() => ({
+  outputWrap: {
+    position: 'relative',
+    display: 'flex',
+    flexWrap: 'nowrap',
+  },
+}));
+
 const Search: React.FC = () => {
   const dispatch = useDispatch();
+  const classes = useStyles();
   const searchData = useSelector(searchDataSelector);
   const [searchVal, setSearchVal] = useState('');
   const debouncedSearchTerm = useDebounce(searchVal, 300);
@@ -59,7 +69,9 @@ const Search: React.FC = () => {
       </FormControl>
 
       {searchData.length > 0 && (
-        <SearchOutput searchData={searchData} onClick={onPlaceClick} />
+        <div className={classes.outputWrap}>
+          <SearchOutput searchData={searchData} onClick={onPlaceClick} />
+        </div>
       )}
     </Box>
   );
