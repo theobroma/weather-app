@@ -1,10 +1,10 @@
 import React from 'react';
 import { List, ListItem, Typography } from '@material-ui/core';
 import { useStyles } from './SearchOutput.styles';
-import { searchPlaceResponseType } from '../../../@types';
+import { SearchPlaceResponseType } from '../../../@types';
 
 interface Props {
-  searchData: searchPlaceResponseType[];
+  searchData: SearchPlaceResponseType[];
   onClick: any;
 }
 
@@ -13,7 +13,7 @@ const SearchOutput: React.FC<Props> = ({ searchData = [], onClick }) => {
 
   return (
     <List className={classes.root} aria-labelledby="nested-list-subheader">
-      {searchData.map((item: searchPlaceResponseType) => {
+      {searchData.map((item: SearchPlaceResponseType) => {
         return (
           <ListItem
             key={item.id}

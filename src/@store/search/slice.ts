@@ -1,22 +1,23 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { searchAPI } from '../../@api/search-api';
-import { searchPlaceResponseType } from '../../@types';
+import { SearchPlaceResponseType } from '../../@types';
 
 const searchInitialState = {
-  data: [] as Array<searchPlaceResponseType>,
+  data: [] as SearchPlaceResponseType[],
 };
 
-export const searchTC = createAsyncThunk<any, any, any>(
-  'search/searchTC',
-  async (place: string, thunkAPI) => {
-    try {
-      const res = await searchAPI.place(place);
-      return { data: res.data };
-    } catch (err: any) {
-      return thunkAPI.rejectWithValue(err.response.data);
-    }
-  },
-);
+export const searchTC = createAsyncThunk<
+  SearchPlaceResponseType[],
+  string,
+  any
+>('search/searchTC', async (place, thunkAPI) => {
+  try {
+    const res = await searchAPI.place(place);
+    return res.data;
+  } catch (err: any) {
+    return thunkAPI.rejectWithValue(err.response.data);
+  }
+});
 
 export const slice = createSlice({
   name: 'search',
@@ -29,7 +30,7 @@ export const slice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(searchTC.fulfilled, (state, action) => {
       if (action.payload) {
-        state.data = action.payload.data;
+        state.data = action.payload;
       }
     });
   },

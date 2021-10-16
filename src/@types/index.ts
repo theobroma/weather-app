@@ -1,4 +1,4 @@
-export * from './General';
-export * from './Search';
+export * from './general';
+export * from './search';
 export * from './theme';
-export * from './currentWeather';
+export * from './forecast';

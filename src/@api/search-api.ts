@@ -1,8 +1,8 @@
-import { searchPlaceResponseType } from '../@types';
+import { SearchPlaceResponseType } from '../@types';
 import { instance } from './api';
 
 export const searchAPI = {
   place(place: string) {
-    return instance.get<searchPlaceResponseType[]>(`/search.json?q=${place}`);
+    return instance.get<SearchPlaceResponseType[]>(`/search.json?q=${place}`);
   },
 };
