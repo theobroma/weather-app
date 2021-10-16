@@ -1,6 +1,6 @@
 import axios from 'axios';
+import { ForecastResponseType } from '../@types';
 import { API_URL } from './api';
-import { CurrectWeatherType } from './currentWeather-api';
 // https://stackoverflow.com/questions/51275434/cannot-get-jest-typescript-axios-test
 const mockedAxios = axios as jest.Mocked<typeof axios>;
 
@@ -9,6 +9,7 @@ jest.mock('axios');
 const param = {
   lat: 51.5341714,
   lon: 33.3767724,
+  days: 3,
 };
 
 describe('fetchData', () => {
@@ -31,8 +32,8 @@ describe('fetchData', () => {
     mockedAxios.get.mockImplementationOnce(() => Promise.resolve(data));
 
     await expect(
-      mockedAxios.get<CurrectWeatherType>(
-        `${API_URL}/current.json?q=${param.lat},${param.lon}`,
+      mockedAxios.get<ForecastResponseType>(
+        `${API_URL}/forecast.json?q=${param.lat},${param.lon}&days=${param.days}`,
       ),
     ).resolves.toEqual(data);
   });
@@ -45,8 +46,8 @@ describe('fetchData', () => {
     );
 
     await expect(
-      mockedAxios.get<CurrectWeatherType>(
-        `${API_URL}/current.json?q=${param.lat},${param.lon}`,
+      mockedAxios.get<ForecastResponseType>(
+        `${API_URL}/forecast.json?q=${param.lat},${param.lon}&days=${param.days}`,
       ),
     ).rejects.toThrow(errorMessage);
   });
