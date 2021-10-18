@@ -1,14 +1,16 @@
 // https://stackoverflow.com/a/55533600/3988363
-import React, { useState } from 'react';
+import { IconButton } from '@material-ui/core';
 import FormatColorFillIcon from '@material-ui/icons/FormatColorFill';
 import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked';
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
-import { IconButton } from '@material-ui/core';
+import { useSnackbar } from 'notistack';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { StyledMenu, StyledMenuItem } from './ThemeMenu.styles';
-import { ThemeColorsType } from '../../../@types';
-import { setThemeAC } from '../../../@store/ui/slice';
+import { useNonInitialEffect } from '../../../@hooks/useNonInitialEffect';
 import { themeSelector } from '../../../@store/ui/selectors';
+import { setThemeAC } from '../../../@store/ui/slice';
+import { ThemeColorsType } from '../../../@types';
+import { StyledMenu, StyledMenuItem } from './ThemeMenu.styles';
 
 const options = [
   'light',
@@ -19,6 +21,7 @@ const options = [
 
 export default function ThemeMenu() {
   const dispatch = useDispatch();
+  const { enqueueSnackbar } = useSnackbar();
   const currentTheme = useSelector(themeSelector);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [selectedIndex, setSelectedIndex] = useState(
@@ -41,6 +44,12 @@ export default function ThemeMenu() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  useNonInitialEffect(() => {
+    enqueueSnackbar(`Theme changed to ${currentTheme}`, {
+      variant: 'warning',
+    });
+  }, [enqueueSnackbar, currentTheme]);
 
   return (
     <div>
