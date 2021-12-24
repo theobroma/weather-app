@@ -1,12 +1,12 @@
 // usually many routes here
 import React from 'react';
 import MainView from '../@views/MainView';
-import { GuestLayout } from './Layouts';
+import { AppLayout } from './AppLayout';
 
-export const AppContainer: React.FC = () => {
+export const AppContainer = () => {
   return (
-    <GuestLayout>
+    <AppLayout>
       <MainView />
-    </GuestLayout>
+    </AppLayout>
   );
 };
