@@ -19,7 +19,7 @@ const options = [
   'pinkBlueGrey',
 ] as ThemeColorsType[];
 
-export default function ThemeMenu() {
+const ThemeMenu = () => {
   const dispatch = useDispatch();
   const { enqueueSnackbar } = useSnackbar();
   const currentTheme = useSelector(themeSelector);
@@ -92,4 +92,6 @@ export default function ThemeMenu() {
       </StyledMenu>
     </div>
   );
-}
+};
+
+export default ThemeMenu;

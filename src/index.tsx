@@ -27,7 +27,8 @@ render(
       <PersistGate
         loading={<LoadingPage />}
         persistor={persistor}
-        onBeforeLift={() => new Promise((resolve) => setTimeout(resolve, 10))} // delay
+        // TODO: implement onBeforeLift delay
+        // onBeforeLift={() => new Promise((resolve) => setTimeout(resolve, 10))}
       >
         <AppThemeProvider>
           <SnackBarProvider>

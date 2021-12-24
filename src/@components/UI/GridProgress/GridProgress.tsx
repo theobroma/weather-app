@@ -23,7 +23,7 @@ const GridProgress: React.FC<GridProgressProps> = ({
           <CircularProgress />
         </Box>
       ) : (
-        <>{children}</>
+        children
       )}
     </Grid>
   );
