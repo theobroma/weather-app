@@ -5,7 +5,7 @@ import { SearchPlaceResponseType } from '../../../@types';
 
 interface Props {
   searchData: SearchPlaceResponseType[];
-  onClick: any;
+  onClick: (lat: number, lon: number) => void;
 }
 
 const SearchOutput: React.FC<Props> = ({ searchData = [], onClick }) => {

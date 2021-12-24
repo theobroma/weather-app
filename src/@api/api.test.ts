@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { ForecastResponseType } from '../@types';
+import { ForecastResponseType, LocationType } from '../@types';
 import { API_URL } from './api';
 // https://stackoverflow.com/questions/51275434/cannot-get-jest-typescript-axios-test
 const mockedAxios = axios as jest.Mocked<typeof axios>;
@@ -14,13 +14,13 @@ const param = {
 
 describe('fetchData', () => {
   it('fetches successfully data from an API', async () => {
-    const data: any = {
+    const data: { data: { location: LocationType } } = {
       data: {
         location: {
           country: 'Ukraine',
           lat: 51.55,
-          localtime: '2021-10-12 11:15',
           localtime_epoch: 1634026541,
+          localtime: '2021-10-12 11:15',
           lon: 33.37,
           name: 'Korolevets',
           region: "Sums'ka Oblast'",
