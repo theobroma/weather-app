@@ -26,10 +26,13 @@ const useStyles = makeStyles((theme: Theme) => {
       },
       temperature: {
         lineHeight: 1,
-        fontSize: 140,
+        fontSize: 110,
         fontWeight: 700,
-        [theme.breakpoints.down('xs')]: {
+        [theme.breakpoints.down('md')]: {
           fontSize: 75,
+        },
+        [theme.breakpoints.down('xs')]: {
+          fontSize: 50,
         },
       },
     }),
