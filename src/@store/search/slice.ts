@@ -6,8 +6,7 @@ const searchInitialState = {
   data: [] as SearchPlaceResponseType,
 };
 
-// TODO: why not createAsyncThunk<SearchPlaceResponseType, string, any> ???
-export const searchTC = createAsyncThunk<any, string, any>(
+export const searchTC = createAsyncThunk<SearchPlaceResponseType, string, any>(
   'search/searchTC',
   async (place, thunkAPI) => {
     try {
