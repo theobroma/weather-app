@@ -1,3 +1,4 @@
+import * as z from 'zod';
 import { SearchPlaceResponseType } from '../@types';
 import { instance } from './api';
 
