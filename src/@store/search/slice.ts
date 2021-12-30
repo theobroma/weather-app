@@ -3,21 +3,21 @@ import { searchAPI } from '../../@api/search-api';
 import { SearchPlaceResponseType } from '../../@types';
 
 const searchInitialState = {
-  data: [] as SearchPlaceResponseType[],
+  data: [] as SearchPlaceResponseType,
 };
 
-export const searchTC = createAsyncThunk<
-  SearchPlaceResponseType[],
-  string,
-  any
->('search/searchTC', async (place, thunkAPI) => {
-  try {
-    const res = await searchAPI.place(place);
-    return res.data;
-  } catch (err: any) {
-    return thunkAPI.rejectWithValue(err.response.data);
-  }
-});
+// TODO: why not createAsyncThunk<SearchPlaceResponseType, string, any> ???
+export const searchTC = createAsyncThunk<any, string, any>(
+  'search/searchTC',
+  async (place, thunkAPI) => {
+    try {
+      const res = await searchAPI.place(place);
+      return res.data;
+    } catch (err: any) {
+      return thunkAPI.rejectWithValue(err.response.data);
+    }
+  },
+);
 
 export const slice = createSlice({
   name: 'search',
