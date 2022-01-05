@@ -22,8 +22,7 @@ export const SearchPlaceItemSchema = z.object({
   region: z.string(),
   url: z.string(),
 });
-
-const SearchPlaceResponseSchema = z.array(SearchPlaceItemSchema);
-// ===Types from Schemas===
 export type SearchPlaceItemType = z.infer<typeof SearchPlaceItemSchema>;
+
+export const SearchPlaceResponseSchema = z.array(SearchPlaceItemSchema);
 export type SearchPlaceResponseType = z.infer<typeof SearchPlaceResponseSchema>;
