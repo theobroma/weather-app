@@ -8,7 +8,15 @@ It uses geolocation to find your city. This still gives the user the option to s
 Register your API Key at
 [https://www.weatherapi.com/](https://www.weatherapi.com/)
 
-## Quick Start
+## :fire: Built With
+
+This project was built using these technologies.
+
+- React.js v17
+- [Material UI v4](https://v4.mui.com/ru/)
+
+
+## 🛠 Quick Start
 
 ```bash
 # Install dependencies
@@ -27,7 +35,7 @@ npm run format
 npm run lint
 ```
 
-## Deploy to GitHub Pages
+## :package: Deploy to GitHub Pages
 
 ```bash
 # Change "homepage"
