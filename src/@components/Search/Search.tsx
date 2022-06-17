@@ -8,8 +8,8 @@ import {
 } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import React, { useCallback, useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import useDebounce from '../../@hooks/useDebounce';
+import { useAppDispatch, useAppSelector } from '../../@store/configureStore';
 import { getForecastTC } from '../../@store/forecast/slice';
 import { searchDataSelector } from '../../@store/search/selectors';
 import { clearDataAC, searchTC } from '../../@store/search/slice';
@@ -24,10 +24,10 @@ export const useStyles = makeStyles(() => ({
   },
 }));
 
-const Search: React.FC = () => {
-  const dispatch = useDispatch();
+const Search = () => {
+  const dispatch = useAppDispatch();
   const classes = useStyles();
-  const searchData = useSelector(searchDataSelector);
+  const searchData = useAppSelector(searchDataSelector);
   const [searchVal, setSearchVal] = useState('');
   const debouncedSearchTerm = useDebounce(searchVal, 300);
 

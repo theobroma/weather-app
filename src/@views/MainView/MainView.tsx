@@ -1,16 +1,16 @@
 import { Box, Container, Grid, Paper } from '@material-ui/core';
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import CurrentWeather from '../../@components/CurrentWeather';
 import Forecast from '../../@components/Forecast';
 import Search from '../../@components/Search';
+import { useAppDispatch, useAppSelector } from '../../@store/configureStore';
 import { getForecastTC } from '../../@store/forecast/slice';
 import { сoordinatesSelector } from '../../@store/сoordinates/selectors';
 import { setUserCoordinatesTC } from '../../@store/сoordinates/slice';
 
-const MainView: React.FC = () => {
-  const dispatch = useDispatch();
-  const { lon, lat } = useSelector(сoordinatesSelector);
+const MainView = () => {
+  const dispatch = useAppDispatch();
+  const { lon, lat } = useAppSelector(сoordinatesSelector);
 
   useEffect(() => {
     if (lat === null && lon === null) {

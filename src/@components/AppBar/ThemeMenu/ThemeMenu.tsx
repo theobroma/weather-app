@@ -5,8 +5,8 @@ import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked';
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
 import { useSnackbar } from 'notistack';
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { useNonInitialEffect } from '../../../@hooks/useNonInitialEffect';
+import { useAppDispatch, useAppSelector } from '../../../@store/configureStore';
 import { themeSelector } from '../../../@store/ui/selectors';
 import { setThemeAC } from '../../../@store/ui/slice';
 import { ThemeColorsType } from '../../../@types';
@@ -20,9 +20,9 @@ const options = [
 ] as ThemeColorsType[];
 
 const ThemeMenu = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const { enqueueSnackbar } = useSnackbar();
-  const currentTheme = useSelector(themeSelector);
+  const currentTheme = useAppSelector(themeSelector);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [selectedIndex, setSelectedIndex] = useState(
     options.indexOf(currentTheme),

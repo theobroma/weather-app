@@ -1,7 +1,7 @@
 import { Box, Grid, Typography } from '@material-ui/core';
 import { nanoid } from '@reduxjs/toolkit';
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useAppSelector } from '../../@store/configureStore';
 import {
   forecastdaySelector,
   forecastSelector,
@@ -9,9 +9,9 @@ import {
 import GridProgress from '../UI/GridProgress/GridProgress';
 import ForecastDay from './ForecastDay/ForecastDay';
 
-const Forecast: React.FC = () => {
-  const forecastday = useSelector(forecastdaySelector);
-  const { isFetching } = useSelector(forecastSelector);
+const Forecast = () => {
+  const forecastday = useAppSelector(forecastdaySelector);
+  const { isFetching } = useAppSelector(forecastSelector);
 
   const currentWeekday = { weekday: 'long' } as const;
   const currentDate = {

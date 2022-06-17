@@ -1,7 +1,7 @@
-import React from 'react';
 import { CssBaseline, PaletteType } from '@material-ui/core';
 import { createTheme, ThemeProvider } from '@material-ui/core/styles';
-import { useSelector } from 'react-redux';
+import React from 'react';
+import { useAppSelector } from '../@store/configureStore';
 import { themeSelector } from '../@store/ui/selectors';
 
 /**
@@ -119,8 +119,8 @@ const themeMap = {
   pinkBlueGrey: PINK_BLUE_GREY_THEME,
 };
 
-const AppThemeProvider: React.FC = ({ children }) => {
-  const currentTheme = useSelector(themeSelector);
+const AppThemeProvider = ({ children }: { children: React.ReactNode }) => {
+  const currentTheme = useAppSelector(themeSelector);
   const theme = createTheme(themeMap[currentTheme]);
 
   return (
