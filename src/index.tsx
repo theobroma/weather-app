@@ -4,9 +4,9 @@ import './index.css';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { AppContainer } from './@routes/AppContainer';
-import { store, persistor } from './configureStore';
 import LoadingPage from './@components/UI/LoadingPage';
 import { SnackBarProvider } from './@components/UI/SnackBar';
+import { persistor, store } from './@store/configureStore';
 import AppThemeProvider from './@themes/theme';
 import reportWebVitals from './reportWebVitals';
 
@@ -24,12 +24,7 @@ const rootEl = document.getElementById('root');
 render(
   <React.StrictMode>
     <Provider store={store}>
-      <PersistGate
-        loading={<LoadingPage />}
-        persistor={persistor}
-        // TODO: implement onBeforeLift delay
-        // onBeforeLift={() => new Promise((resolve) => setTimeout(resolve, 10))}
-      >
+      <PersistGate loading={<LoadingPage />} persistor={persistor}>
         <AppThemeProvider>
           <SnackBarProvider>
             <AppContainer />

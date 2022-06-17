@@ -21,7 +21,7 @@ export const setUserCoordinatesTC = createAsyncThunk(
   },
 );
 
-export const slice = createSlice({
+export const сoordinatesSlice = createSlice({
   name: 'сoordinates',
   initialState: сoordinatesInitialState,
   reducers: {
@@ -35,5 +35,5 @@ export const slice = createSlice({
   },
 });
 
-export const сoordinatesReducer = slice.reducer;
-export const { setCoordinatesAC } = slice.actions;
+export const сoordinatesReducer = сoordinatesSlice.reducer;
+export const { setCoordinatesAC } = сoordinatesSlice.actions;

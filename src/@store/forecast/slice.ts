@@ -44,7 +44,7 @@ export const getForecastTC = createAsyncThunk<
   }
 });
 
-export const slice = createSlice({
+export const forecastSlice = createSlice({
   name: 'forecast',
   initialState: forecastInitialState,
   reducers: {},
@@ -71,4 +71,4 @@ export const slice = createSlice({
   },
 });
 
-export const forecastReducer = slice.reducer;
+export const forecastReducer = forecastSlice.reducer;
