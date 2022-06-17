@@ -3,7 +3,7 @@ import React from 'react';
 import SimpleAppBar from '../@components/AppBar';
 import Footer from '../@components/Footer';
 
-export const AppLayout: React.FC = ({ children }) => {
+export const AppLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className="HolyGrail">
       <SimpleAppBar />

@@ -33,7 +33,18 @@ const useStyles = makeStyles((theme: Theme) => {
   };
 });
 
-const ForecastDay: React.FC<Props> = ({
+type Props = {
+  weekDay: string;
+  date: string;
+  sunrise: string;
+  sunset: string;
+  icon: string;
+  condition_text: string;
+  min_temp: number;
+  max_temp: number;
+};
+
+const ForecastDay = ({
   weekDay,
   date,
   sunrise,
@@ -42,7 +53,7 @@ const ForecastDay: React.FC<Props> = ({
   condition_text,
   min_temp,
   max_temp,
-}) => {
+}: Props) => {
   const classes = useStyles();
   return (
     <Card className={classes.root}>
@@ -112,14 +123,3 @@ const ForecastDay: React.FC<Props> = ({
 };
 
 export default ForecastDay;
-
-type Props = {
-  weekDay: string;
-  date: string;
-  sunrise: string;
-  sunset: string;
-  icon: string;
-  condition_text: string;
-  min_temp: number;
-  max_temp: number;
-};

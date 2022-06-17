@@ -39,7 +39,12 @@ const useStyles = makeStyles((theme: Theme) => {
   };
 });
 
-const CurrentWeatherTemperature: React.FC<Props> = ({ temp, condition }) => {
+type Props = {
+  temp: number;
+  condition: ConditionType;
+};
+
+const CurrentWeatherTemperature = ({ temp, condition }: Props) => {
   const classes = useStyles();
 
   return (
@@ -72,11 +77,6 @@ const CurrentWeatherTemperature: React.FC<Props> = ({ temp, condition }) => {
       </Box>
     </Box>
   );
-};
-
-type Props = {
-  temp: number;
-  condition: ConditionType;
 };
 
 export default CurrentWeatherTemperature;

@@ -3,7 +3,7 @@ import { SnackbarProvider as NotiStackSnackbarProvider } from 'notistack';
 
 export const SNACKBAR_MAX_COUNT = 5;
 
-const SnackBarProvider: React.FC = ({ children }) => {
+const SnackBarProvider = ({ children }: { children: React.ReactNode }) => {
   return (
     <NotiStackSnackbarProvider
       maxSnack={SNACKBAR_MAX_COUNT}

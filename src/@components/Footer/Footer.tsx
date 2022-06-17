@@ -26,7 +26,7 @@ const useStyles = makeStyles(() => {
   };
 });
 
-const Footer: React.FC = () => {
+const Footer = () => {
   const classes = useStyles();
   return (
     <AppBar position="static">

@@ -20,7 +20,7 @@ const useStyles = makeStyles(() => {
   };
 });
 
-export const Location: React.FC<Props> = ({ location }) => {
+export const Location = ({ location }: Props) => {
   const classes = useStyles();
   return (
     <div>

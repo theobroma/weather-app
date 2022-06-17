@@ -1,15 +1,11 @@
 import { Box, CircularProgress, Grid, GridProps } from '@material-ui/core';
 import React from 'react';
 
-type GridProgressProps = {
+type Props = {
   loading: boolean;
 } & GridProps;
 
-const GridProgress: React.FC<GridProgressProps> = ({
-  loading,
-  children,
-  ...gridProps
-}) => {
+const GridProgress = ({ loading, children, ...gridProps }: Props) => {
   return (
     <Grid {...gridProps}>
       {loading ? (

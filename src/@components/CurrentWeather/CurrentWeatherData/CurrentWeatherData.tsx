@@ -15,7 +15,7 @@ type Props = {
   currentWeather: CurrentWeatherType;
 };
 
-export const CurrentWeatherData: React.FC<Props> = ({
+export const CurrentWeatherData = ({
   currentWeather: {
     temp_c,
     condition,
@@ -25,7 +25,7 @@ export const CurrentWeatherData: React.FC<Props> = ({
     wind_dir,
     gust_kph,
   },
-}) => {
+}: Props) => {
   const updateDate = new Date(last_updated);
   const currentWeekday = { weekday: 'long' } as const;
   const currentDate = {

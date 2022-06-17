@@ -8,7 +8,7 @@ interface Props {
   onClick: (lat: number, lon: number) => void;
 }
 
-const SearchOutput: React.FC<Props> = ({ searchData = [], onClick }) => {
+const SearchOutput = ({ searchData = [], onClick }: Props) => {
   const classes = useStyles();
 
   return (

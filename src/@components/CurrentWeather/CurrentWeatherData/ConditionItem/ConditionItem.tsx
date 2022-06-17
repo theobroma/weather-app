@@ -7,6 +7,7 @@ import React from 'react';
 interface Props {
   title: string;
   icon: IconDefinition;
+  children: React.ReactNode;
 }
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -28,7 +29,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-export const ConditionItem: React.FC<Props> = ({ title, icon, children }) => {
+export const ConditionItem = ({ title, icon, children }: Props) => {
   const classes = useStyles();
   return (
     <Box my={2} className={classes.root}>
