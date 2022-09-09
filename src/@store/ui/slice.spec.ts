@@ -1,4 +1,5 @@
-import { ThemeColorsType } from '../../@types';
+import type { ThemeColorsType } from '../../@types';
+
 import { setThemeAC, uiReducer } from './slice';
 
 describe('counter reducer sync actions', () => {

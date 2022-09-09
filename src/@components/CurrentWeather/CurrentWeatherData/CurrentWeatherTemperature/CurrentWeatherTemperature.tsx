@@ -1,12 +1,9 @@
 import React from 'react';
-import {
-  Box,
-  createStyles,
-  makeStyles,
-  Theme,
-  Typography,
-} from '@material-ui/core';
-import { ConditionType } from '../../../../@types';
+
+import type { Theme } from '@material-ui/core';
+import { Box, createStyles, makeStyles, Typography } from '@material-ui/core';
+
+import type { ConditionType } from '../../../../@types';
 
 const useStyles = makeStyles((theme: Theme) => {
   return {

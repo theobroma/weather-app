@@ -1,8 +1,11 @@
-import { Box, Grid } from '@material-ui/core';
 import React from 'react';
+
+import { Box, Grid } from '@material-ui/core';
+
 import { useAppSelector } from '../../@store/configureStore';
 import { forecastSelector } from '../../@store/forecast/selectors';
 import GridProgress from '../UI/GridProgress/GridProgress';
+
 import { CurrentWeatherData } from './CurrentWeatherData/CurrentWeatherData';
 import { Location } from './Location/Location';
 

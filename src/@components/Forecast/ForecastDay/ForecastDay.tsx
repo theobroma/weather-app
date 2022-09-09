@@ -1,13 +1,14 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import type { Theme } from '@material-ui/core';
 import {
   Card,
   CardContent,
-  Typography,
-  makeStyles,
   createStyles,
-  Theme,
+  makeStyles,
+  Typography,
 } from '@material-ui/core';
 
 const useStyles = makeStyles((theme: Theme) => {

@@ -1,5 +1,7 @@
 import axios from 'axios';
-import { ForecastResponseType, LocationType } from '../@types';
+
+import type { ForecastResponseType, LocationType } from '../@types';
+
 import { API_URL } from './api';
 // https://stackoverflow.com/questions/51275434/cannot-get-jest-typescript-axios-test
 const mockedAxios = axios as jest.Mocked<typeof axios>;

@@ -1,5 +1,7 @@
-import { Box, CircularProgress, Grid, GridProps } from '@material-ui/core';
 import React from 'react';
+
+import type { GridProps } from '@material-ui/core';
+import { Box, CircularProgress, Grid } from '@material-ui/core';
 
 type Props = {
   loading: boolean;

@@ -1,15 +1,18 @@
 // https://stackoverflow.com/a/55533600/3988363
+import React, { useState } from 'react';
+import { useSnackbar } from 'notistack';
+
 import { IconButton } from '@material-ui/core';
 import FormatColorFillIcon from '@material-ui/icons/FormatColorFill';
 import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked';
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
-import { useSnackbar } from 'notistack';
-import React, { useState } from 'react';
+
 import { useNonInitialEffect } from '../../../@hooks/useNonInitialEffect';
 import { useAppDispatch, useAppSelector } from '../../../@store/configureStore';
 import { themeSelector } from '../../../@store/ui/selectors';
 import { setThemeAC } from '../../../@store/ui/slice';
-import { ThemeColorsType } from '../../../@types';
+import type { ThemeColorsType } from '../../../@types';
+
 import { StyledMenu, StyledMenuItem } from './ThemeMenu.styles';
 
 const options = [

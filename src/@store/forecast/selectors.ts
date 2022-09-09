@@ -1,4 +1,4 @@
-import { RootState } from '../configureStore';
+import type { RootState } from '../configureStore';
 
 export const forecastSelector = (state: RootState) => {
   return state.forecast;

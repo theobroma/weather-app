@@ -1,18 +1,18 @@
 import React from 'react';
 import { render } from 'react-dom';
-import './index.css';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
-import { AppContainer } from './@routes/AppContainer';
+
 import LoadingPage from './@components/UI/LoadingPage';
 import { SnackBarProvider } from './@components/UI/SnackBar';
+import { AppContainer } from './@routes/AppContainer';
 import { persistor, store } from './@store/configureStore';
 import AppThemeProvider from './@themes/theme';
 import reportWebVitals from './reportWebVitals';
 
+import './index.css';
 // All styles
 import './@assets/styles/index.scss';
-
 // Open Source fonts
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';

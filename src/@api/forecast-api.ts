@@ -1,4 +1,5 @@
-import { ForecastResponseType } from '../@types';
+import type { ForecastResponseType } from '../@types';
+
 import { instance } from './api';
 
 export const forecastAPI = {

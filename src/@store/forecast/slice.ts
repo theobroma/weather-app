@@ -1,13 +1,14 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+
 import { forecastAPI } from '../../@api/forecast-api';
-import {
-  LocationType,
+import type {
   CurrentWeatherType,
-  ForecastType,
   ForecastResponseType,
+  ForecastType,
+  LocationType,
 } from '../../@types';
 import { waitForMe } from '../../@utils/waitforme';
-import { сoordinatesInitialStateType } from '../сoordinates/slice';
+import type { сoordinatesInitialStateType } from '../сoordinates/slice';
 
 const forecastInitialState = {
   location: {} as LocationType,

@@ -1,5 +1,7 @@
-import { Box, Container, Grid, Paper } from '@material-ui/core';
 import React, { useEffect } from 'react';
+
+import { Box, Container, Grid, Paper } from '@material-ui/core';
+
 import CurrentWeather from '../../@components/CurrentWeather';
 import Forecast from '../../@components/Forecast';
 import Search from '../../@components/Search';

@@ -1,3 +1,5 @@
+import React from 'react';
+
 import {
   faBacon,
   faCalendarAlt,
@@ -6,8 +8,9 @@ import {
   faWind,
 } from '@fortawesome/free-solid-svg-icons';
 import { Grid } from '@material-ui/core';
-import React from 'react';
-import { CurrentWeatherType } from '../../../@types';
+
+import type { CurrentWeatherType } from '../../../@types';
+
 import ConditionItem from './ConditionItem';
 import CurrentWeatherTemperature from './CurrentWeatherTemperature';
 
