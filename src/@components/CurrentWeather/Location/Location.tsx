@@ -21,7 +21,7 @@ const useStyles = makeStyles(() => {
   };
 });
 
-export const Location = ({ location }: Props) => {
+const Location = ({ location }: Props) => {
   const classes = useStyles();
   return (
     <div>
@@ -31,4 +31,4 @@ export const Location = ({ location }: Props) => {
     </div>
   );
 };
-export default Location;
+export { Location };

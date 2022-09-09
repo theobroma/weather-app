@@ -23,7 +23,7 @@ const forecastInitialState = {
   errorMessage: '',
 };
 
-export type forecastInitialStateType = typeof forecastInitialState;
+// export type forecastInitialStateType = typeof forecastInitialState;
 
 // https://stackoverflow.com/questions/67279037/the-thunkapi-getstate-method-does-not-correctly-infer-the-state-type
 export const getForecastTC = createAsyncThunk<

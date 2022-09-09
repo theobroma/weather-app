@@ -19,7 +19,7 @@ import { setCoordinatesAC } from '../../@store/сoordinates/slice';
 
 import SearchOutput from './SearchOutput';
 
-export const useStyles = makeStyles(() => ({
+const useStyles = makeStyles(() => ({
   outputWrap: {
     position: 'relative',
     display: 'flex',

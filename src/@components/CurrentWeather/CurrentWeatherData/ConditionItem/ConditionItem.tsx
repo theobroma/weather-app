@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-export const ConditionItem = ({ title, icon, children }: Props) => {
+const ConditionItem = ({ title, icon, children }: Props) => {
   const classes = useStyles();
   return (
     <Box my={2} className={classes.root}>
