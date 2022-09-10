@@ -9,6 +9,7 @@ export const useStyles = makeStyles((theme: Theme) => {
       },
       title: {
         display: 'none',
+        color: '#fff',
         [theme.breakpoints.up('sm')]: {
           display: 'block',
         },

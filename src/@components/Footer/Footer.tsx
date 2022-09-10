@@ -22,6 +22,7 @@ const useStyles = makeStyles(() => {
         textAlign: 'center',
         marginBottom: 0,
         fontSize: 16,
+        color: '#fff',
       },
     }),
   };
@@ -46,7 +47,7 @@ const Footer = () => {
           </Box>
           <Box>
             <IconButton
-              color="inherit"
+              style={{ color: 'white' }}
               href="https://github.com/theobroma/weather-app"
               data-testid="github-link"
               aria-label="Github Link"

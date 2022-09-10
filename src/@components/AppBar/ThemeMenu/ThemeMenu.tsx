@@ -57,6 +57,7 @@ const ThemeMenu = () => {
   return (
     <div>
       <IconButton
+        style={{ color: 'white' }}
         aria-label="more"
         aria-controls="long-menu"
         aria-haspopup="true"
