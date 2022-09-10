@@ -1,6 +1,6 @@
 # Weather App
 
-##### React & Material UI app utilizing the Weatherapi API.
+##### React & Material UI app utilizing the Weatherapi API
 
 It is designed display your current and 3 day forecast weather.
 It uses geolocation to find your city. This still gives the user the option to search for another location.
@@ -12,9 +12,10 @@ Register your API Key at
 
 This project was built using these technologies.
 
-- React.js v17
+- [React.js v17](https://17.reactjs.org/)
 - [Material UI v4](https://v4.mui.com/ru/)
 
+Same app but using up to date stack [here](https://github.com/theobroma/weather-app-latest)
 
 ## 🛠 Quick Start
 
