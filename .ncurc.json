@@ -1,0 +1,10 @@
+{
+  "reject": [
+    "@types/node",
+    "react",
+    "react-dom",
+    "@types/react",
+    "@types/react-dom",
+    "notistack"
+  ]
+}
