@@ -1,10 +1,13 @@
 {
   "reject": [
+    "axios",
     "@types/node",
     "react",
     "react-dom",
     "@types/react",
     "@types/react-dom",
-    "notistack"
+    "notistack",
+    "@testing-library/react",
+    "typescript"
   ]
 }
